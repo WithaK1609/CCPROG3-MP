@@ -41,13 +41,13 @@ public class InputLogic{
         return input;
     }
 
-    // WIP
+    // Fixed this
     public static String readString(String prompt){
-        System.out.print(prompt);
-        
-        String input = scanner.nextLine();
-        
-        return input;
+       System.out.print(prompt);
+
+       scanner.nextLine();
+
+       return scanner.nextLine(); 
     }
 
     public static void closeScanner(){

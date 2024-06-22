@@ -24,22 +24,37 @@ public class Main{
             choice = InputLogic.readInt("Choose: ", 0, 4);  // gets user input. Refer to the InputLogic for more details
 
             if (choice == 1){
-                
+                Hotel.createHotel();
             }
 
             else if(choice == 2){
-            
+                //Hotel.viewHotel();
             }
 
             else if(choice == 3){
-
+                //Hotel.manageHotel();
             }
 
             else if(choice == 4){
-
+                //Hotel.simulateBooking();
             }
         }
         InputLogic.closeScanner();
         
     }
+
+    public void viewHotel(){
+        
+    }
+
+    public void manageHotel(){
+
+    }
+
+    public void viewRoomDetails(){
+
+    }
+
+
 }
+
