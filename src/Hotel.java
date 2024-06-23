@@ -1,56 +1,56 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Hotel{
     private String name;
-    private static ArrayList<Hotel> hotels = new ArrayList<>();
     private ArrayList<Room> rooms;
 
     // Constructor
-    public Hotel(){
+    public Hotel(String name){
         this.name = name;
         this.rooms = new ArrayList<Room>();
-        hotels.add(this);
     }
     
     // Getters and Setters
     public String getName(){
         return name;
     }
+    
     public void setName(String name){
         this.name = name;
     }
+    
     public ArrayList<Room> getRooms(){ 
         return rooms;
-    }
-
-    public static ArrayList<Hotel> getHotels(){
-        return hotels;
     }
 
     // makes sure that the capacity of rooms does not exceed 50
     public boolean checkMaxCapacity(){
         return rooms.size() == 50;
     }
+    
+    public String toString(){
+        return "Hotel Name: " + getName() + "\nNumber of Rooms: " + getRooms().size();
+    }
 
     // WIP
     public static Hotel createHotel() {
-        System.out.print("\033c");
+        TextDisplay.clearConsole();
+        TextDisplay.design();
         String hotelName = InputLogic.readString("Enter the hotel name: ");
         int numberOfRooms = InputLogic.readInt("Enter how many rooms this hotel will have: ", 1, 50);
         String roomName = InputLogic.readString("Enter Room Name. (NOTE: Every room will start with this name): ");
-    
-        Hotel hotel = new Hotel();
-        hotel.setName(hotelName); // Set the hotel name
+        
+        Hotel hotel = new Hotel(hotelName);
+
         for (int i = 0; i < numberOfRooms; i++) {
-            hotel.getRooms().add(new Room(roomName, numberOfRooms)); // not sure if the room names are named correctly
+            hotel.rooms.add(new Room(roomName, numberOfRooms)); // not sure if the room names are named correctly
         }
     
         return hotel;
     }
 
     public void viewHotel(){
-        System.out.print("\033c");
+        TextDisplay.design();
         System.out.println("Hotel Name: " + getName());
         System.out.println("Number of Rooms: " + getRooms().size());
     

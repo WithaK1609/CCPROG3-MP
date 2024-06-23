@@ -2,6 +2,8 @@ public class Room{
     private String name;
     private int number;
     private static double price = 1299.00;
+    private boolean isAvailable;
+
 
     // Constructor
     public Room(String name, int number){
@@ -32,6 +34,14 @@ public class Room{
 
     public static void setPrice(double price){
         Room.price = price;
+    }
+
+    public boolean isAvailable(){
+        return isAvailable;
+    }
+
+    public void setAvailable(boolean isAvailable){
+        this.isAvailable = isAvailable;
     }
 
 }

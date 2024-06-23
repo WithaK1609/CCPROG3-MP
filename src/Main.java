@@ -1,30 +1,35 @@
-public class Main{
+import java.util.ArrayList;
 
-    // prints out ======= for design purposes
-    public static void design() {
-        System.out.println("======================================================================================================================");
-    }
+public class Main{
+    private static ArrayList<Hotel> hotels = new ArrayList<>();
 
     public static void main(String[] args){
+        
         System.out.println("Welcome to the Hotel Reservation System!");
         
         int choice = -1; 
         
         // start of the program
         while(choice != 0){
-            design();
+            TextDisplay.clearConsole();
+            TextDisplay.design();
             System.out.println("Select which feature to use:");
             System.out.println("\t[1] Create Hotel");
             System.out.println("\t[2] View Hotel");
             System.out.println("\t[3] Manage Hotel");
             System.out.println("\t[4] Simulate Booking");
             System.out.println("\t[0] Exit Program");
-            design();
+            TextDisplay.design();
 
             choice = InputLogic.readInt("Choose: ", 0, 4);  // gets user input. Refer to the InputLogic for more details
 
             if (choice == 1){
-                Hotel.createHotel();
+                Hotel hotel = Hotel.createHotel();
+                hotels.add(hotel);
+                
+                for(Hotel index : hotels){
+                    System.out.println(index);
+                }
             }
 
             else if(choice == 2){
@@ -43,18 +48,13 @@ public class Main{
         
     }
 
-    public void viewHotel(){
-        
+    public static ArrayList<Hotel> getHotels(){
+        return new ArrayList<>(hotels);
     }
 
-    public void manageHotel(){
-
+    public static void setHotels(ArrayList<Hotel> hotels){
+        Main.hotels = hotels;
     }
-
-    public void viewRoomDetails(){
-
-    }
-
-
 }
 
+    
