@@ -1,15 +1,16 @@
 public class Room{
     private String name;
-    private int number;
-    private static double price = 1299.00;
+    private double price;
     private boolean isAvailable;
 
 
     // Constructor
-    public Room(String name, int number){
+    public Room(String name){
         this.name = name;
-        this.number = number;
+        this.price = 1299.00;
+        this.isAvailable = true;
     }
+
 
     // Getters and Setters
     public String getName(){
@@ -20,27 +21,19 @@ public class Room{
         this.name = name;
     }
 
-    public int getNumber(){
-        return number;
-    }
-
-    public void setNumber(int number){
-        this.number = number;
-    }
-
     public double getPrice(){
         return price;
     }
 
-    public static void setPrice(double price){
-        Room.price = price;
+    public void setPrice(double price){
+        this.price = price;
     }
 
     public boolean isAvailable(){
         return isAvailable;
     }
 
-    public void setAvailable(boolean isAvailable){
+    public  void setAvailable(boolean isAvailable){
         this.isAvailable = isAvailable;
     }
 

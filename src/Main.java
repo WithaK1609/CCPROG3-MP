@@ -1,16 +1,25 @@
+import java.util.List;
 import java.util.ArrayList;
 
 public class Main{
-    private static ArrayList<Hotel> hotels = new ArrayList<>();
+    private static List<Hotel> hotels = new ArrayList<>();
+
+    public static List<Hotel> getHotels(){
+        return new ArrayList<Hotel>(hotels);
+    }
+
+    public static void setHotels(List<Hotel> hotels){
+        Main.hotels = hotels;
+    }
 
     public static void main(String[] args){
-        
+        ViewHotel viewHotel = new ViewHotel();
         System.out.println("Welcome to the Hotel Reservation System!");
         
         int choice = -1; 
         
         // start of the program
-        while(choice != 0){
+        do{
             TextDisplay.clearConsole();
             TextDisplay.design();
             System.out.println("Select which feature to use:");
@@ -27,13 +36,13 @@ public class Main{
                 Hotel hotel = Hotel.createHotel();
                 hotels.add(hotel);
                 
-                for(Hotel index : hotels){
-                    System.out.println(index);
-                }
+                //for(Hotel index : hotels){
+                  //  System.out.println(index);
+                //}
             }
 
             else if(choice == 2){
-                //Hotel.viewHotel();
+                viewHotel.viewSpecificHotel(hotels);
             }
 
             else if(choice == 3){
@@ -43,18 +52,13 @@ public class Main{
             else if(choice == 4){
                 //Hotel.simulateBooking();
             }
-        }
+        }while(choice != 0);
+
         InputLogic.closeScanner();
         
     }
 
-    public static ArrayList<Hotel> getHotels(){
-        return new ArrayList<>(hotels);
-    }
-
-    public static void setHotels(ArrayList<Hotel> hotels){
-        Main.hotels = hotels;
-    }
+    
 }
 
     

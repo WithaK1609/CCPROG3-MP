@@ -1,32 +1,50 @@
-import java.util.ArrayList;
+import java.util.List;
 public class ViewHotel{
-
-    private ArrayList<Hotel> hotels = Main.getHotels();
     
-    
-    public void viewHotel(){
+    public void viewSpecificHotel(List<Hotel> hotels){
         
         int choice = -1;
 
-        while(choice != 0){
-        TextDisplay.design();
-        System.out.println("Here is a list of all of the hotels created: ");
-        
-        for (int i = 0; i < hotels.size(); i++){
-            System.out.println("\t[" + (i+1) + "]" + "Hotel Name: " + hotels.get(i).getName());
-            System.out.println("\t[" + (i+1) + "]" + "Number of rooms: " + hotels.get(i).getRooms().size());
-            System.out.print("\n");
-        }
-        System.out.println("Please select a hotel to view its details (0 to EXIT): ");
-        TextDisplay.design();
-        choice = InputLogic.readInt("Hotel Number: ", 0, hotels.size());
+        while(true)
+        {
+            if (hotels.size() == 0){
+                TextDisplay.design();
+                System.out.println("No hotels have been created yet!");
+                InputLogic.readString("Press enter to continue...");
+                break;
+            }
 
-        if(choice != 0){
+            TextDisplay.clearConsole();
             TextDisplay.design();
-            System.out.println("Hotel Name: " + hotels.get(choice-1).getName());
-            System.out.println("Number of rooms: " + hotels.get(choice-1).getRooms().size());
+            TextDisplay.displayViewHotelList(hotels);
+            System.out.println("Please select a hotel to view its details (0 to EXIT): ");
             TextDisplay.design();
-        }
+            
+            choice = InputLogic.readInt("Hotel Number: ", 0, hotels.size());
+            
+            if (choice == 0){
+                break;
+            }
+
+            TextDisplay.clearConsole();
+            TextDisplay.displayHotelInformation(choice, hotels);
+            TextDisplay.design();
+            
+            /* WIP
+            choice = InputLogic.readInt("Choose: ", 0, 2);
+    
+            switch (choice){
+                case 1:
+                    //viewRoomDetails();
+                    break;
+                case 2:
+                    //viewReservations();
+                    break;
+                case 0:
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }*/
         }
 
     }

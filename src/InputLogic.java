@@ -41,7 +41,7 @@ public class InputLogic{
         return input;
     }
 
-    // Fixed this
+    
     public static String readString(String prompt){
        System.out.print(prompt);
 

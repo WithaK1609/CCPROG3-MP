@@ -1,13 +1,20 @@
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 
 public class Hotel{
     private String name;
-    private ArrayList<Room> rooms;
-
+    private List<Room> rooms;
+    private Map<String, Set<Integer>> reservations; // Key: Room number, Value: Set of booked days
+    
     // Constructor
     public Hotel(String name){
         this.name = name;
         this.rooms = new ArrayList<Room>();
+        this.reservations = new HashMap<>();
     }
     
     // Getters and Setters
@@ -19,20 +26,20 @@ public class Hotel{
         this.name = name;
     }
     
-    public ArrayList<Room> getRooms(){ 
+    public List<Room> getRooms(){ 
         return rooms;
     }
 
-    // makes sure that the capacity of rooms does not exceed 50
+    
     public boolean checkMaxCapacity(){
-        return rooms.size() == 50;
+        return rooms.size() == 50;  // makes sure that the capacity of rooms does not exceed 50
     }
     
     public String toString(){
         return "Hotel Name: " + getName() + "\nNumber of Rooms: " + getRooms().size();
     }
 
-    // WIP
+
     public static Hotel createHotel() {
         TextDisplay.clearConsole();
         TextDisplay.design();
@@ -42,48 +49,37 @@ public class Hotel{
         
         Hotel hotel = new Hotel(hotelName);
 
-        for (int i = 0; i < numberOfRooms; i++) {
-            hotel.rooms.add(new Room(roomName, numberOfRooms)); // not sure if the room names are named correctly
+        for (int i = 1; i <= numberOfRooms; i++) {
+            hotel.rooms.add(new Room((roomName + (i+1))));
+            hotel.reservations.put((roomName + (i+1)), new HashSet<>()); // initialize booking sets for each room
         }
     
         return hotel;
     }
-
-    public void viewHotel(){
-        TextDisplay.design();
-        System.out.println("Hotel Name: " + getName());
-        System.out.println("Number of Rooms: " + getRooms().size());
     
-        System.out.println("Select an option:");
-        System.out.println("\t[1] View Room Details");
-        System.out.println("\t[2] View Reservations");
-        System.out.println("\t[0] Go Back");
+    /*  ALL WIP BELOW THIS LINE. Haven't debugged all of these methods yet. Mostly AI generated din to HAHAHAHAH
+        Ang idea is may hash map na kung saan nakaset yung booking dates sa Set integer (Set<Integer> bookedDays) 
+        tapos tied in sa room name pero mali pa mga logic dito. Hindi din handled pa yung oras. Will fix later*/
     
-        int choice = InputLogic.readInt("Choose: ", 0, 2);
-    
-        switch (choice) {
-            case 1:
-                //viewRoomDetails();
-                break;
-            case 2:
-                //viewReservations();
-                break;
-            case 0:
-                return;
-            default:
-                System.out.println("Invalid choice. Please try again.");
+    private boolean isRoomAvailable(String roomName, int checkIn, int checkOut) {
+        if (checkIn == 31 || checkOut == 1 ) {
+            return false; // makes sure Check-in cannot be on 31st and check-out cannot be on 1st
         }
+        Set<Integer> bookedDays = reservations.get(roomName);
+        for (int i = checkIn; i < checkOut; i++) {
+            if (bookedDays.contains(i)) {
+                return false; // room is not available if any date in the range is booked
+            }
+        }
+        return true;
     }
 
-    public void manageHotel(){
-
-    }
-
-    public void viewRoomDetails(){
-
-    }
-
-    public void viewReservations(){
-
+    public Room findAvailableRoom(String roomName, int checkIn, int checkOut) {
+        for (Room room : rooms) {
+            if (room.getName().equals(roomName) && isRoomAvailable(room.getName(), checkIn, checkOut)) {
+                return room;    // check if room is available and return it
+            }
+        }
+        return null; // no room available
     }
 }
