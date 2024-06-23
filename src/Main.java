@@ -14,6 +14,7 @@ public class Main{
 
     public static void main(String[] args){
         ViewHotel viewHotel = new ViewHotel();
+        ManageHotel manageHotel = new ManageHotel();
         System.out.println("Welcome to the Hotel Reservation System!");
         
         int choice = -1; 
@@ -46,7 +47,7 @@ public class Main{
             }
 
             else if(choice == 3){
-                //Hotel.manageHotel();
+                manageHotel.manageSpecificHotel(hotels);
             }
 
             else if(choice == 4){

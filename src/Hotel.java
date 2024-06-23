@@ -45,13 +45,29 @@ public class Hotel{
         TextDisplay.design();
         String hotelName = InputLogic.readString("Enter the hotel name: ");
         int numberOfRooms = InputLogic.readInt("Enter how many rooms this hotel will have: ", 1, 50);
-        String roomName = InputLogic.readString("Enter Room Name. (NOTE: Every room will start with this name): ");
+        //String roomName = InputLogic.readString("Enter Room Name. (NOTE: Every room will start with this name): ");
         
         Hotel hotel = new Hotel(hotelName);
 
+
+        int hotelFloors = numberOfRooms / 10;
+        int createdRooms = 0;
+        
+        // i just felt like it'd be better if lahat ng hotels would have the same naming 
+        // sense instead of user input names para mas clean
+        while(numberOfRooms >= createdRooms){
+            for (int i = 1; i <= hotelFloors; i++) {
+                for (int j = 1; j <= 10; j++) {
+                    hotel.rooms.add(new Room((i + "0" + j)));
+                    createdRooms++;
+                }
+            }
+        }
+
+
         for (int i = 1; i <= numberOfRooms; i++) {
-            hotel.rooms.add(new Room((roomName + (i+1))));
-            hotel.reservations.put((roomName + (i+1)), new HashSet<>()); // initialize booking sets for each room
+            //hotel.rooms.add(new Room((roomName + (i+1))));
+            //hotel.reservations.put((roomName + (i+1)), new HashSet<>()); initialize booking sets for each room
         }
     
         return hotel;

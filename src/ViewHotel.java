@@ -13,9 +13,8 @@ public class ViewHotel{
                 InputLogic.readString("Press enter to continue...");
                 break;
             }
-
+            // Removed extra design since nag rrepeat yung border
             TextDisplay.clearConsole();
-            TextDisplay.design();
             TextDisplay.displayViewHotelList(hotels);
             System.out.println("Please select a hotel to view its details (0 to EXIT): ");
             TextDisplay.design();
