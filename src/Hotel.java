@@ -60,8 +60,13 @@ public class Hotel{
 
         // Create rooms based on number of rooms with naming scheme of 101, 102, 103, etc. For under 10 rooms
         else{
+            
             for (int i = 1; i <= numberOfRooms; i++) {
-                hotel.rooms.add(new Room("10" + i));
+                if(i < 10)
+                    hotel.rooms.add(new Room("10" + i));
+                else
+                    hotel.rooms.add(new Room("1" + i));
+
             }
         }
     
