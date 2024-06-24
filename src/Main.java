@@ -1,16 +1,8 @@
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Main{
     private static List<Hotel> hotels = new ArrayList<>();
-
-    public static List<Hotel> getHotels(){
-        return new ArrayList<Hotel>(hotels);
-    }
-
-    public static void setHotels(List<Hotel> hotels){
-        Main.hotels = hotels;
-    }
+    private static List<Booking> bookings = new ArrayList<>();
 
     public static void main(String[] args){
         ViewHotel viewHotel = new ViewHotel();
@@ -51,7 +43,7 @@ public class Main{
             }
 
             else if(choice == 4){
-                //Hotel.simulateBooking();
+                Booking.createBooking(hotels);
             }
         }while(choice != 0);
 
@@ -59,6 +51,21 @@ public class Main{
         
     }
 
+    public static List<Hotel> getHotels(){
+        return new ArrayList<Hotel>(hotels);
+    }
+
+    public static void setHotels(List<Hotel> hotels){
+        Main.hotels = hotels;
+    }
+
+    public static List<Booking> getBookings(){
+        return bookings;
+    }
+
+    public static void setBookings(List<Booking> bookings){
+        Main.bookings = bookings;
+    }
     
 }
 

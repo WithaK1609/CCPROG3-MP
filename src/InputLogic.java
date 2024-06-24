@@ -29,11 +29,11 @@ public class InputLogic{
                 input = Integer.parseInt(scanner.next());
                 if (input < minChoice || input > maxChoices) 
                 {
-                    System.out.println("Invalid Input! Please choose only what is displayed! " + minChoice + " and " + maxChoices + ".");
+                    System.out.println("Invalid Input! Please choose only what is displayed! " + minChoice + " to " + maxChoices + ".");
                 }
             }catch(NumberFormatException e){
                 input = -1;
-                System.out.println("Invalid Input! Please choose only what is displayed!");
+                System.out.println("Invalid Input! Please choose only an Integer!");
                 scanner.nextLine();
             }
         }while (input < minChoice || input > maxChoices);

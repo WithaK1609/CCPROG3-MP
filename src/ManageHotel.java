@@ -1,12 +1,12 @@
-import java.util.List;
+import java.util.*;
 
-public class ManageHotel {
+public class ManageHotel{
+    
     
     public void manageSpecificHotel(List<Hotel> hotels){
         int choice = -1;
 
-        while(true)
-        {
+        while(true){
             if (hotels.size() == 0){
                 TextDisplay.design();
                 System.out.println("No hotels to manage yet!");

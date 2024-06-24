@@ -1,4 +1,4 @@
-import java.util.List;
+import java.util.*;
 public class ViewHotel{
     
     public void viewSpecificHotel(List<Hotel> hotels){
@@ -13,7 +13,7 @@ public class ViewHotel{
                 InputLogic.readString("Press enter to continue...");
                 break;
             }
-            // Removed extra design since nag rrepeat yung border
+            // Removed extra design since nag repeat yung border
             TextDisplay.clearConsole();
             TextDisplay.displayViewHotelList(hotels);
             System.out.println("Please select a hotel to view its details (0 to EXIT): ");
@@ -24,9 +24,11 @@ public class ViewHotel{
             if (choice == 0){
                 break;
             }
-
+            
+            Hotel selectedHotel = hotels.get(choice - 1);
             TextDisplay.clearConsole();
             TextDisplay.displayHotelInformation(choice, hotels);
+            InputLogic.readString("Press enter to continue...");
             TextDisplay.design();
             
             /* WIP

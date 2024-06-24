@@ -1,20 +1,15 @@
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 
 public class Hotel{
     private String name;
     private List<Room> rooms;
-    private Map<String, Set<Integer>> reservations; // Key: Room number, Value: Set of booked days
-    
+    private List<Booking> reservationDetails;
+
     // Constructor
     public Hotel(String name){
         this.name = name;
         this.rooms = new ArrayList<Room>();
-        this.reservations = new HashMap<>();
+        this.reservationDetails = new ArrayList<Booking>();
     }
     
     // Getters and Setters
@@ -29,7 +24,6 @@ public class Hotel{
     public List<Room> getRooms(){ 
         return rooms;
     }
-
     
     public boolean checkMaxCapacity(){
         return rooms.size() == 50;  // makes sure that the capacity of rooms does not exceed 50
@@ -41,64 +35,109 @@ public class Hotel{
 
 
     public static Hotel createHotel() {
-        //TextDisplay.clearConsole();
         TextDisplay.design();
         String hotelName = InputLogic.readString("Enter the hotel name: ");
         int numberOfRooms = InputLogic.readInt("Enter how many rooms this hotel will have: ", 1, 50);
-        //String roomName = InputLogic.readString("Enter Room Name. (NOTE: Every room will start with this name): ");
-        
-        Hotel hotel = new Hotel(hotelName);
 
+        Hotel hotel = new Hotel(hotelName);     // instantiate new hotel
 
-        int hotelFloors = numberOfRooms / 10;
-        int createdRooms = 0;
-
-        // i just felt like it'd be better if lahat ng hotels would have the same naming 
-        // sense instead of user input names para mas clean
-        while(numberOfRooms >= createdRooms){
-            for (int i = 1; i <= hotelFloors; i++) {
-                for (int j = 1; j <= 10; j++) {
-                    if(j == 10) 
-                        hotel.rooms.add(new Room((i + "" + j)));                   
-                    else 
-                        hotel.rooms.add(new Room((i + "0" + j)));
-                    createdRooms++;
+        // Create rooms based on number of rooms with naming scheme of 101, 102, 103, etc.
+        if (numberOfRooms > 10){
+            int hotelFloors = numberOfRooms / 10;
+            int createdRooms = 0;
+            while (createdRooms < numberOfRooms){
+                for (int i = 1; i <= hotelFloors && createdRooms < numberOfRooms; i++) {
+                    for (int j = 1; j <= 10 && createdRooms < numberOfRooms; j++) {
+                        if (j == 10)
+                            hotel.rooms.add(new Room((i + "" + j)));
+                        else
+                            hotel.rooms.add(new Room((i + "0" + j)));
+                        createdRooms++;
+                    }
                 }
             }
         }
 
-
-        for (int i = 1; i <= numberOfRooms; i++) {
-            //hotel.rooms.add(new Room((roomName + (i+1))));
-            //hotel.reservations.put((roomName + (i+1)), new HashSet<>()); initialize booking sets for each room
+        // Create rooms based on number of rooms with naming scheme of 1, 2, 3, etc. For under 10 rooms
+        else{
+            for (int i = 1; i <= numberOfRooms; i++) {
+                hotel.rooms.add(new Room(i + ""));
+            }
         }
     
         return hotel;
     }
     
-    /*  ALL WIP BELOW THIS LINE. Haven't debugged all of these methods yet. Mostly AI generated din to HAHAHAHAH
-        Ang idea is may hash map na kung saan nakaset yung booking dates sa Set integer (Set<Integer> bookedDays) 
-        tapos tied in sa room name pero mali pa mga logic dito. Hindi din handled pa yung oras. Will fix later*/
     
-    private boolean isRoomAvailable(String roomName, int checkIn, int checkOut) {
-        if (checkIn == 31 || checkOut == 1 ) {
-            return false; // makes sure Check-in cannot be on 31st and check-out cannot be on 1st
-        }
-        Set<Integer> bookedDays = reservations.get(roomName);
-        for (int i = checkIn; i < checkOut; i++) {
-            if (bookedDays.contains(i)) {
-                return false; // room is not available if any date in the range is booked
+    /** 
+     * Checks if room is available.
+     * @param room
+     * @param checkIn
+     * @param checkOut
+     * @return boolean
+     */
+    public boolean isRoomAvailable(Room room, int checkIn, int checkOut) {
+        Set<Integer> reservations = room.getReservations();
+        for (int i = checkIn; i < checkOut; i++){
+            if (reservations.contains(i)){
+                return false;
             }
         }
+
         return true;
     }
 
-    public Room findAvailableRoom(String roomName, int checkIn, int checkOut) {
+    
+    /** 
+     * Finds available room.
+     * @param checkIn
+     * @param checkOut
+     * @return Room
+     */
+    public Room findAvailableRoom(int checkIn, int checkOut){
         for (Room room : rooms) {
-            if (room.getName().equals(roomName) && isRoomAvailable(room.getName(), checkIn, checkOut)) {
+            if (isRoomAvailable(room, checkIn, checkOut)){
                 return room;    // check if room is available and return it
             }
         }
         return null; // no room available
+    }
+
+    
+    /** 
+     * Prints available rooms.
+     * @param checkIn
+     * @param checkOut
+     */
+    public void printAvailableRooms(int checkIn, int checkOut) {
+        for (Room room : rooms) {
+            if (isRoomAvailable(room, checkIn, checkOut)){
+                System.out.println(room);
+            }
+        }
+    }
+
+    
+    /** 
+     * Reserves room.
+     * @param room
+     * @param checkIn
+     * @param checkOut
+     */
+    public void reserveRoom(Room room, int checkIn, int checkOut){
+        Set<Integer> reservations = room.getReservations(); // gets the list of hashset in the room class    
+        for (int i = checkIn; i < checkOut; i++){
+            reservations.add(i); // add it to the hashset
+        }
+    }
+
+    
+    /** 
+     * Confirms booking.
+     * @param booking
+     */
+    public void confirmBooking(Booking booking){
+        reservationDetails.add(booking);    // add booking to list of the hotel class
+        reserveRoom(booking.getRoom(), booking.getCheckIn(), booking.getCheckOut());    // call the reserve room method
     }
 }
