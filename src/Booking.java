@@ -37,7 +37,7 @@ public class Booking{
     }
 
 
-
+    // setters
     public void setGuestName(String guestName) {
         this.guestName = guestName;
     }
@@ -57,6 +57,9 @@ public class Booking{
     public void setCheckOut(int checkOut) {
         this.checkOut = checkOut;
     }
+
+
+
 
     private double calculateTotalPrice(){
         return (checkOut - checkIn) * room.getPrice();
