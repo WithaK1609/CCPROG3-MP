@@ -2,7 +2,6 @@ import java.util.*;
 
 public class ManageHotel{
     
-    
     public void manageSpecificHotel(List<Hotel> hotels){
         int choice = -1;
 
@@ -38,20 +37,24 @@ public class ManageHotel{
                 case 1:
                     changeHotelName(selectedHotel);
                     break;
+
                 case 2:
-                    // addHotelRoom(selectedHotel);
+                    int numRoomsToAdd = InputLogic.readInt("Enter the number of rooms to add: ", 1, 50);
+                    addHotelRoom(selectedHotel, numRoomsToAdd);
                     break;
 
                 case 3:
-                    // removeHotelRoom(hotels, selectedHotel);
-                    break;  
+                    //int numRoomsToRemove = InputLogic.readInt("Enter the number of rooms to remove: ", 1, 50);
+                    //removeHotelRoom(selectedHotel, numRoomsToRemove);
+                    break;
 
                 case 4:
-                    // updateRoomPrice(selectedHotel);       
+                    //double newPrice = InputLogic.readDouble("Enter the new room price: ", 100.0, 10000.0);
+                    //updateRoomPrice(selectedHotel, newPrice);
                     break;
 
                 case 5:
-                    // removeReservation(selectedHotel);
+                    //removeReservation(selectedHotel);
                     break;
 
                 case 6:
@@ -72,7 +75,34 @@ public class ManageHotel{
         System.out.println("Hotel name changed successfully.");
     }
 
+    private void addHotelRoom(Hotel hotel, int numRoomsToAdd) {
+    List<Room> rooms = hotel.getRooms();
+    int currentRoomCount = rooms.size();
+
+        // checker if the hotel has reached the maximum capacity of 50 rooms
+    if (currentRoomCount + numRoomsToAdd > 50) {
+        System.out.println("Cannot add " + numRoomsToAdd + " rooms. The hotel can only have a maximum of 50 rooms.");
+        System.out.println("You can add up to " + (50 - currentRoomCount) + " more rooms.");
+        InputLogic.readString("Press any key to go back...");
+        return;
+    }
+
+    int currentFloor = currentRoomCount / 10;
+    int currentRoomNumber = currentRoomCount % 10;
+
+    for (int i = 0; i < numRoomsToAdd; i++) {
+        if (currentRoomNumber == 10) {
+            currentFloor++;
+            currentRoomNumber = 0;
+        }
+        currentRoomNumber++;
+        String newRoomName = (currentFloor + 1) + String.format("%02d", currentRoomNumber);
+        rooms.add(new Room(newRoomName));
+    }
+        System.out.println(numRoomsToAdd + " rooms added successfully.");
+    }
     
+
 
     private void removeHotel(List<Hotel> hotels, Hotel hotel) {
         hotels.remove(hotel);
