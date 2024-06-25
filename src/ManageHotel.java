@@ -42,41 +42,45 @@ public class ManageHotel{
             }
             
             Hotel selectedHotel = hotels.get(choice - 1);
-            TextDisplay.clearConsole();
-            TextDisplay.displayManageHotelOptions(choice, hotels);            
-            TextDisplay.design();
 
+            while (true) {
+                TextDisplay.clearConsole();
+                TextDisplay.displayManageHotelOptions(choice, hotels);            
+                TextDisplay.design();
 
-            choice = InputLogic.readInt("Choose: ", 0, 6);
-            switch (choice) {
-                case 1:
-                    changeHotelName(selectedHotel);
-                    break;
+                int chooseViewFunction = InputLogic.readInt("Choose: ", 0, 6);
+                switch (chooseViewFunction) {
+                    case 1:
+                        changeHotelName(selectedHotel);
+                        break;
 
-                case 2:                 
-                    addHotelRoom(selectedHotel);
-                    break;
+                    case 2:                 
+                        addHotelRoom(selectedHotel);
+                        break;
 
-                case 3:                    
-                    removeHotelRoom(selectedHotel);
-                    break;
+                    case 3:                    
+                        removeHotelRoom(selectedHotel);
+                        break;
 
-                case 4:
-                    updateRoomPrice(selectedHotel);
-                    break;
+                    case 4:
+                        updateRoomPrice(selectedHotel);
+                        break;
 
-                case 5:
-                    removeReservation(selectedHotel);
-                    break;
+                    case 5:
+                        removeReservation(selectedHotel);
+                        break;
 
-                case 6:
-                    removeHotel(hotels, selectedHotel);
-                    break;
+                    case 6:
+                        removeHotel(hotels, selectedHotel);
+                        break;
 
-                default:
-                    System.out.println("Invalid choice. Please try again.");
+                    case 0:
+                        return;
+
+                    default:
+                        System.out.println("Invalid choice. Please try again.");
+                }
             }
-
         }
 
     }
