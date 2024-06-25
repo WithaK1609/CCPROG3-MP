@@ -132,7 +132,7 @@ public class Booking {
 
     /** 
      * Creates a new booking with the specified details.
-     * @param hotels
+     * @param hotels list of hotels
      * @return a new Booking object with the provided details
      */
     public static Booking createBooking(List<Hotel> hotels){

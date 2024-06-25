@@ -88,8 +88,7 @@ public class ManageHotel{
     /**
      * Changes the name of the hotel.
      * 
-     * @param hotel
-     * @return void
+     * @param hotel hotel to change name
      */
 
     public void changeHotelName(Hotel hotel) {
@@ -117,8 +116,8 @@ public class ManageHotel{
      * Adds a <user input> amount of 
      * rooms to the hotel.
      * 
-     * @param hotel
-     * @return void
+     * @param hotel hotel to add rooms for
+     *
      */
 
      public void addHotelRoom(Hotel hotel) {
@@ -179,7 +178,7 @@ public class ManageHotel{
      * Removes a <user input> amount of rooms from the hotel.
      * As long as there are no active reservations.
      * 
-     * @param hotel
+     * @param hotel hotel to remove rooms from
      */
 
     public void removeHotelRoom(Hotel hotel) {
@@ -232,8 +231,8 @@ public class ManageHotel{
      * Updates the price of all rooms in the hotel. 
      * As long as there are no active reservations.
      * 
-     * @param hotel
-     * @return void
+     * @param hotel hotel to update room prices
+     * 
      */
 
     public void updateRoomPrice(Hotel hotel) {
@@ -252,8 +251,8 @@ public class ManageHotel{
     /**
      * Removes a reservation from the hotel.
      * 
-     * @param hotel
-     * @return void
+     * @param hotel hotel to remove reservation from
+     * 
      */
 
     public void removeReservation(Hotel hotel) {
@@ -301,9 +300,9 @@ public class ManageHotel{
     /**
      * Removes a hotel from the list of hotels.
      * 
-     * @param hotels
-     * @param hotel
-     * @return void
+     * @param hotels list of hotels
+     * @param hotel hotel to remove from the list
+     * 
      */
 
     public void removeHotel(List<Hotel> hotels, Hotel hotel) {

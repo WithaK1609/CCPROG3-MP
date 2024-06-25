@@ -68,8 +68,8 @@ public class Hotel{
     
     /** 
      * Checks if hotel name is unique.
-     * @param name
-     * @param hotels
+     * @param name - name of the hotel
+     * @param hotels - list of hotels
      * @return boolean
      */
     private static boolean isUnique(String name, List<Hotel> hotels){
@@ -178,8 +178,8 @@ public class Hotel{
     
     /** 
      * Finds available room. This method is not used. However, we kept it as it might be useful for part 2.
-     * @param checkIn   
-     * @param checkOut
+     * @param checkIn check in date
+     * @param checkOut check out date
      * @return Room
      *
     public Room findAvailableRoom(int checkIn, int checkOut){
@@ -273,9 +273,9 @@ public class Hotel{
     
     /** 
      * Reserves room.
-     * @param room  
-     * @param checkIn
-     * @param checkOut
+     * @param room  room to reserve
+     * @param checkIn check in date 
+     * @param checkOut check out date
      */
     public void reserveRoom(Room room, int checkIn, int checkOut){
         Set<Integer> reservations = room.getReservations(); // gets the list of hashset in the room class    

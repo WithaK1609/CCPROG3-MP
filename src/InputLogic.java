@@ -46,9 +46,9 @@ public class InputLogic{
      * It will only accept a number between minChoice and maxChoices.
      * The user will be asked again if the input is not within the range.
      * The prompt is displayed before the input is read.
-     * @param prompt
-     * @param minChoice
-     * @param maxChoices
+     * @param prompt the message displayed to the user to input a value
+     * @param minChoice the minimum allowed value
+     * @param maxChoices the maximum allowed value
      * @return int
      */
     
