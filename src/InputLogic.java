@@ -1,9 +1,25 @@
 import java.util.Scanner;
-
+/**
+ * Represents a utility class for handling input logic.
+ * 
+ * <p>This class provides methods for reading double values, integer values, and strings from the console.
+ * It ensures that the input values are within specified ranges and handles invalid inputs gracefully.
+ * 
+ * @author Jakob Hernandez && Kian Daylag
+ * @version 1.0
+ */
 public class InputLogic{
     
     static Scanner scanner = new Scanner(System.in);
     
+    /**
+      * Reads a double value from the console within a specified range.
+      * 
+      * @param prompt the message displayed to the user to input a value
+      * @param minChoice the minimum allowed value
+      * @param maxChoice the maximum allowed value
+      * @return the valid double value entered by the user
+      */
      public static double readDouble(String prompt, double minChoice, double maxChoice) {
         double input = 0;
         
@@ -59,7 +75,12 @@ public class InputLogic{
         return input;
     }
 
-    
+    /**
+      * Reads a string value from the console.
+      * 
+      * @param prompt the message displayed to the user to input a value
+      * @return the string value entered by the user
+      */
     public static String readString(String prompt){
        System.out.print(prompt);
 
@@ -68,6 +89,9 @@ public class InputLogic{
        return scanner.nextLine(); 
     }
 
+    /**
+      * Closes the scanner used for reading input.
+      */
     public static void closeScanner(){
         scanner.close();
     }

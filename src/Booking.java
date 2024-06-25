@@ -1,4 +1,12 @@
 import java.util.*;
+/**
+ * Represents a booking in a hotel.
+ *
+ * <p>A booking has a guest name, a room, a check-in and check-out date, and a total price.
+ *
+ * @author Jakob Hernandez && Kian Daylag
+ * @version 1.0
+ */
 
 public class Booking {
     private int checkIn;
@@ -7,55 +15,125 @@ public class Booking {
     private String guestName;
     private double totalPrice;
 
-    public Booking(String guestName, Room room, int checkIn, int checkOut) {
+    /**
+     * Constructs a new booking.
+     *
+     * @param guestName    the name of the guest
+     * @param room         the room to be booked
+     * @param checkIn      the check-in date
+     * @param checkOut     the check-out date
+     * @param totalPrice   the total price of the booking
+     */
+    public Booking(String guestName, Room room, int checkIn, int checkOut, double totalPrice) {
         this.guestName = guestName;
         this.room = room;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
+        this.totalPrice = totalPrice;
     }
 
     // getters
+    
+    /**
+     * Returns the name of the guest.
+     *
+     * @return the name of the guest
+     */
     public String getGuestName(){
         return guestName;
     }
 
+    /**
+     * Returns the total price of the booking.
+     *
+     * @return the total price of the booking
+     */
     public double getTotalPrice(){
         return totalPrice;
     }
-
+    
+    /**
+     * Returns the room associated with the booking.
+     *
+     * @return the room associated with the booking
+     */
     public Room getRoom(){
         return room;
     }
 
+    /**
+     * Returns the check-in date of the booking.
+     *
+     * @return the check-in date of the booking
+     */
     public int getCheckIn(){
         return checkIn;
     }
 
+    /**
+     * Returns the check-out date of the booking.
+     *
+     * @return the check-out date of the booking
+     */
     public int getCheckOut(){
         return checkOut;
     }
 
     // setters
+     /**
+     * Sets the guest name for the booking.
+     *
+     * @param guestName the name of the guest to set
+     */
     public void setGuestName(String guestName) {
         this.guestName = guestName;
     }
 
+    /**
+     * Sets the check-in date of the booking.
+     *
+     * @param checkIn the new check-in date
+     */
     public void setCheckIn(int checkIn) {
         this.checkIn = checkIn;
     }
 
+    /**
+     * Sets the check-out date of the booking.
+     *
+     * @param checkOut the new check-out date
+     */
     public void setCheckOut(int checkOut) {
         this.checkOut = checkOut;
     }
 
+    /**
+     * Sets the room associated with the booking.
+     *
+     * @param room the new room
+     */
     public void setRoom(Room room) {
         this.room = room;
     }
 
+    /**
+     * Sets the total price of the booking.
+     *
+     * @param totalPrice the new total price
+     */
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    @Override
+    public String toString(){
+        return "\tGuest name: " + guestName + "\n\t" + room + "\n\tCheck in: " + checkIn + "\n\tCheck out: " + checkOut + "\n\tTotal price: " + totalPrice;
+    }
+
     /** 
-     * This methods handles how to create a booking.
+     * Creates a new booking with the specified details.
      * @param hotels
-     * @return Booking
+     * @return a new Booking object with the provided details
      */
     public static Booking createBooking(List<Hotel> hotels){
         // declare necessary variables
@@ -91,7 +169,7 @@ public class Booking {
             Hotel selectedHotel = hotels.get(selectHotel - 1);
             
             // Prints out the rooms available
-            System.out.println("Here are the rooms available within your specified dates: (" + checkIn + " - " + checkOut + ")");
+            System.out.println("Here are the rooms available within your specified dates (" + checkIn + " - " + checkOut + "): ");
             selectedHotel.printAvailableRooms(checkIn, checkOut);
             
             // Finds available rooms
@@ -110,18 +188,13 @@ public class Booking {
             int selectRoom = InputLogic.readInt("Enter which room you will be staying (1 - " + availableRooms.size() + "): ", 1, availableRooms.size());
             
             Room selectedRoom = availableRooms.get(selectRoom - 1);                
-            double TotalPrice = (checkOut - checkIn) * selectedRoom.getPrice();     // calculate total price. Can't use the method above as it is not static
-            booking = new Booking(guestName, selectedRoom, checkIn, checkOut);      // create new booking object
+            double totalPrice = (checkOut - checkIn) * selectedRoom.getPrice();     // calculate total price. Can't use the method above as it is not static
+            booking = new Booking(guestName, selectedRoom, checkIn, checkOut, totalPrice);      // create new booking object
             
             // prints out booking details
-            TextDisplay.design();
-            System.out.println("Guest Name: " + guestName);
-            System.out.println("Staying at Room number: " + selectedRoom.getName());
-            System.out.println("Check-In: " + checkIn);
-            System.out.println("Check-Out: " + checkOut);
-            System.out.println("Total Booking fee: " + TotalPrice);
+            TextDisplay.displayGuestDetails(booking);
 
-            confirmBooking = InputLogic.readInt("Confirm booking?(0 - No, 1 - Yes) ", 0, 1);
+            confirmBooking = InputLogic.readInt("Confirm booking? (1 - Yes, 0 - No)? ", 0, 1);
             
             if (confirmBooking == 1){      // booking confirmed
                 selectedRoom.setAvailable(false);
@@ -130,6 +203,7 @@ public class Booking {
                 }
                 selectedHotel.confirmBooking(booking); // moved this out the for loop cause it was causing duplicates of bookings
                 bookingConfirmed = true;    // breaks the loop
+                TextDisplay.design();
                 InputLogic.readString("Room Successfully Booked! Have a nice day");
                 return booking;
             }
