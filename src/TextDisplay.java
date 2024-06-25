@@ -40,8 +40,8 @@ public class TextDisplay{
         TextDisplay.design();
         System.out.println("Select an option:");
         System.out.println("\t[1] Change Hotel Name");
-        System.out.println("\t[2] Add Room");
-        System.out.println("\t[3] Remove Room");
+        System.out.println("\t[2] Add Room/s");
+        System.out.println("\t[3] Remove Room/s");
         System.out.println("\t[4] Update Room price");
         System.out.println("\t[5] Remove Reservation");
         System.out.println("\t[6] Remove Hotel");
