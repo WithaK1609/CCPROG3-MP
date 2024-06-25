@@ -8,7 +8,7 @@ public class ManageHotel{
         while(true){
             if (hotels.size() == 0){
                 TextDisplay.design();
-                System.out.println("No hotels to manage yet!");
+                System.out.println("No hotels to manage!");
                 InputLogic.readString("Press enter to continue...");
                 break;
             }           
@@ -71,8 +71,16 @@ public class ManageHotel{
 
     private void changeHotelName(Hotel hotel) {
         String newName = InputLogic.readString("Enter the new hotel name: ");
+
+        int confirm = InputLogic.readInt("Are you sure you want to change the name of the hotel " + hotel.getName() + "? (0 - No, 1 - Yes): ", 0, 1);
+        if (confirm == 0) {
+            System.out.println("Operation canceled.");
+            InputLogic.readString("Press enter to continue...");
+            return;
+        }
         hotel.setName(newName);
         System.out.println("Hotel name changed successfully.");
+        InputLogic.readString("Press enter to continue...");
     }
 
     private void addHotelRoom(Hotel hotel, int numRoomsToAdd) {
@@ -87,8 +95,15 @@ public class ManageHotel{
         return;
     }
 
-    int currentFloor = currentRoomCount / 10;
-    int currentRoomNumber = currentRoomCount % 10;
+    int confirm = InputLogic.readInt("Are you sure you want to add " + numRoomsToAdd + " rooms? (0 - No, 1 - Yes): ", 0, 1);
+    if (confirm == 0) {
+        System.out.println("Operation canceled.");
+        InputLogic.readString("Press enter to continue...");
+        return;
+    }
+
+        int currentFloor = currentRoomCount / 10;
+        int currentRoomNumber = currentRoomCount % 10;
 
     for (int i = 0; i < numRoomsToAdd; i++) {
         if (currentRoomNumber == 10) {
@@ -100,13 +115,22 @@ public class ManageHotel{
         rooms.add(new Room(newRoomName));
     }
         System.out.println(numRoomsToAdd + " rooms added successfully.");
+        InputLogic.readString("Press enter to continue...");
     }
     
 
 
     private void removeHotel(List<Hotel> hotels, Hotel hotel) {
+
+        int confirm = InputLogic.readInt("Are you sure you want to remove the hotel " + hotel.getName() + "? (0 - No, 1 - Yes): ", 0, 1);
+        if (confirm == 0) {
+            System.out.println("Operation canceled.");
+            InputLogic.readString("Press enter to continue...");
+            return;
+        }
         hotels.remove(hotel);
         System.out.println("Hotel removed successfully.");
+        InputLogic.readString("Press enter to continue...");
 
     }
 
