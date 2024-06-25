@@ -153,10 +153,10 @@ public class Booking {
             }
 
             // Enters guest name, check in, check out
-            System.out.println("Type 999 in GUEST NAME to exit booking immediately");
+            System.out.println("Type 0 in GUEST NAME to exit booking immediately");
             String guestName = InputLogic.readString("Enter guest name: ");
             
-            if (guestName.equals("999")){   // if user wants to exit booking
+            if (guestName.equals("0")){   // if user wants to exit booking
                 break;
             }
 

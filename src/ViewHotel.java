@@ -41,6 +41,11 @@ public class ViewHotel{
         ArrayList<Integer> roomAvailableDates = hotel.availableRoomDates(specificRoom);     // gets the available dates from the Hotel class for the chosen room
         System.out.println(specificRoom.toString());
         
+        if (roomAvailableDates.size() == 0){     // no available dates
+            TextDisplay.design();
+            System.out.println("No available dates for this room!");
+            return;
+        }
         System.out.println("Number of available dates: ");
         for (int i = 0; i < roomAvailableDates.size(); i++){
             System.out.print(roomAvailableDates.get(i) + " ");
@@ -59,12 +64,11 @@ public class ViewHotel{
         if (hotel.getReservationDetails().size() == 0){     // no reservations made
             TextDisplay.design();
             System.out.println("No reservations have been made yet!");
-            InputLogic.readString("Press enter to continue...");
             return;
         }
 
         hotel.printAllReservations();       // prints all reservations
-        int chosenReservation = InputLogic.readInt("Which Reservation Info would you like to check?", 1, hotel.getReservationDetails().size());
+        int chosenReservation = InputLogic.readInt("Which Reservation Info would you like to check? ", 1, hotel.getReservationDetails().size());
         Booking specificReservation = hotel.getReservationDetails().get(chosenReservation - 1);     // gets the chosen reservation
         TextDisplay.displayGuestDetails(specificReservation);   // prints the details of the chosen reservation
         TextDisplay.design();
