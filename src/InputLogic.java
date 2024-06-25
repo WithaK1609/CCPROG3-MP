@@ -28,6 +28,7 @@ public class InputLogic{
 
             try {
                 input = Double.parseDouble(scanner.next());
+                scanner.nextLine();
                 if (input < minChoice || input > maxChoice) {
                     System.out.println("Invalid Input! Please choose only what is displayed! " + minChoice + " to " + maxChoice + ".");
                 }
@@ -61,6 +62,7 @@ public class InputLogic{
 
             try{
                 input = Integer.parseInt(scanner.next());
+                scanner.nextLine();
                 if (input < minChoice || input > maxChoices) 
                 {
                     System.out.println("Invalid Input! Please choose only what is displayed! " + minChoice + " to " + maxChoices + ".");
@@ -81,12 +83,9 @@ public class InputLogic{
       * @param prompt the message displayed to the user to input a value
       * @return the string value entered by the user
       */
-    public static String readString(String prompt){
-       System.out.print(prompt);
-
-       scanner.nextLine();
-
-       return scanner.nextLine(); 
+      public static String readString(String prompt){
+        System.out.print(prompt);
+        return scanner.nextLine();
     }
 
     /**
