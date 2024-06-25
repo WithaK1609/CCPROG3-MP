@@ -241,7 +241,16 @@ public class ManageHotel{
             for (Room room : hotel.getRooms()) {
                 room.setPrice(newPrice);
             }
-            System.out.println("Room prices updated successfully.");    
+              
+            int confirm = InputLogic.readInt("Are you sure you want to change the base price of the rooms in Hotel " + hotel.getName() + "? (0 - No, 1 - Yes): ", 0, 1);
+            if (confirm == 0) {
+                System.out.println("Operation canceled.");
+                InputLogic.readString("Press enter to continue...");
+                return;
+            }
+            else 
+                System.out.println("Room prices updated successfully.");  
+
         } else {
             System.out.println("Cannot update room prices. There are active reservations.");
         }
