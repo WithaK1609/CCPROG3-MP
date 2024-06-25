@@ -1,7 +1,21 @@
 import java.util.*;
 
+/**
+ * Represents a utility class for managing hotel information.
+ *
+ * <p>This class provides methods to change the hotel name, add rooms, remove rooms, update room prices, remove reservations, and remove the hotel.
+ *
+ * @author Jakob Hernandez && Kian Daylag
+ * @version 1.0
+ */
+
 public class ManageHotel{
-    
+    /**
+     * Manages a specific hotel. 
+     * 
+     * @param hotels
+     * @return void
+     */
    
     public void manageSpecificHotel(List<Hotel> hotels){
         int choice = -1;
@@ -43,9 +57,8 @@ public class ManageHotel{
                     addHotelRoom(selectedHotel);
                     break;
 
-                case 3:
-                    //int numRoomsToRemove = InputLogic.readInt("Enter the number of rooms to remove: ", 1, 50);
-                    //removeHotelRoom(selectedHotel, numRoomsToRemove);
+                case 3:                    
+                    removeHotelRoom(selectedHotel);
                     break;
 
                 case 4:
@@ -68,7 +81,14 @@ public class ManageHotel{
 
     }
 
-    private void changeHotelName(Hotel hotel) {
+    /**
+     * Changes the name of the hotel.
+     * 
+     * @param hotel
+     * @return void
+     */
+
+    public void changeHotelName(Hotel hotel) {
         String newName = InputLogic.readString("Enter the new hotel name: ");
 
         int confirm = InputLogic.readInt("Are you sure you want to change the name of the hotel " + hotel.getName() + "? (0 - No, 1 - Yes): ", 0, 1);
@@ -77,57 +97,142 @@ public class ManageHotel{
             InputLogic.readString("Press enter to continue...");
             return;
         }
-        hotel.setName(newName);
+
+        if(newName.equals(hotel.getName())){
+            System.out.println("The new name is the same as the current name.");
+            InputLogic.readString("Press enter to continue...");
+            return;
+        }
+
+        hotel.setName(newName); // sets the new name after confirmation
         System.out.println("Hotel name changed successfully.");
         InputLogic.readString("Press enter to continue...");
     }
 
-    private void addHotelRoom(Hotel hotel) {
+    /**
+     * Adds a <user input> amount of 
+     * rooms to the hotel.
+     * 
+     * @param hotel
+     * @return void
+     */
+
+     public void addHotelRoom(Hotel hotel) {
         int numRoomsToAdd = InputLogic.readInt("Enter the number of rooms to add: ", 1, 50);
         List<Room> rooms = hotel.getRooms();
         int currentRoomCount = rooms.size();
-
-            // checker if the hotel has reached the maximum capacity of 50 rooms
+        
+        // Checker if the hotel has reached the maximum capacity of 50 rooms
         if (currentRoomCount + numRoomsToAdd > 50) {
             System.out.println("Cannot add " + numRoomsToAdd + " rooms. The hotel can only have a maximum of 50 rooms.");
             System.out.println("You can add up to " + (50 - currentRoomCount) + " more rooms.");
             InputLogic.readString("Press any key to go back...");
             return;
         }
-        // confirmation checker
+        
+        // Confirmation checker
         int confirm = InputLogic.readInt("Are you sure you want to add " + numRoomsToAdd + " rooms? (0 - No, 1 - Yes): ", 0, 1);
-
         if (confirm == 0) {
             System.out.println("Operation canceled.");
             InputLogic.readString("Press enter to continue...");
             return;
         }
-
-        int currentFloor = currentRoomCount / 10; // gets the floor number
-        int currentRoomNumber = currentRoomCount % 10; // gets the room number
-
-        for (int i = 0; i < numRoomsToAdd; i++) {
-            if (currentRoomNumber == 10) {
-                currentFloor++;
-                currentRoomNumber = 0;
-            }
-            currentRoomNumber++;
-            String newRoomName = (currentFloor + 1) + String.format("%02d", currentRoomNumber);
-            rooms.add(new Room(newRoomName));
-        }
-            System.out.println(numRoomsToAdd + " rooms added successfully.");
-            InputLogic.readString("Press enter to continue...");
-    }
-
     
-    /*  
-    private void removeHotelRoom(Hotel hotel, int numRoomsToRemove) {
-
+        // Start from the current floor and room number
+        int currentFloor = currentRoomCount / 10;
+        int currentRoomNumber = currentRoomCount % 10 + 1;
+    
+        for (int i = 0; i < numRoomsToAdd; i++) {
+            boolean roomExists = false;
+            String newRoomName = (currentFloor + 1) + String.format("%02d", currentRoomNumber);
+            
+            // Check if room already exists
+            for (Room room : rooms) {
+                if (room.getName().equals(newRoomName)) {
+                    roomExists = true;
+                    break;
+                }
+            }
+            
+            if (!roomExists) {
+                rooms.add(new Room(newRoomName));
+            }
+    
+            // Update room number and floor
+            currentRoomNumber++;
+            if (currentRoomNumber > 10) {
+                currentFloor++;
+                currentRoomNumber = 1;
+            }
+        }
+    
+        System.out.println(numRoomsToAdd + " rooms added successfully.");
+        InputLogic.readString("Press enter to continue...");
     }
-    */
+    
+  
+    /**
+     * Removes a <user input> amount of rooms from the hotel.
+     * As long as there are no active reservations.
+     * 
+     * @param hotel
+     */
+
+    public void removeHotelRoom(Hotel hotel) {
+        int numRoomsToRemove = InputLogic.readInt("Enter the number of rooms to remove: ", 1, 50);
+        List<Room> removableRooms = new ArrayList<>(); // Corrected the declaration
+
+        int totalRooms = hotel.getRooms().size();
+        int maxRemovableRooms = totalRooms - 1; // Ensure at least one room remains
+    
+        if (numRoomsToRemove > maxRemovableRooms) {
+            System.out.println("Cannot remove " + numRoomsToRemove + " rooms. The hotel must have a minimum of 1 room");
+            System.out.println("You can remove up to " + maxRemovableRooms + " more rooms.");
+            InputLogic.readString("Press any key to go back...");
+            return;
+        }
+
+        // Filter out rooms with no reservations
+        for (Room room : hotel.getRooms()) {
+            if (room.getReservations().isEmpty()) {
+                removableRooms.add(room);
+            }
+        }
+    
+        if (removableRooms.size() < numRoomsToRemove) {
+            System.out.println("Only " + removableRooms.size() + " rooms can be removed as they have no reservations.");
+            InputLogic.readString("Press enter to continue...");
+            return;
+        }
+    
+        // Confirmation checker
+        int confirm = InputLogic.readInt("Are you sure you want to remove " + numRoomsToRemove + " rooms? (0 - No, 1 - Yes): ", 0, 1);
+        if (confirm == 0) {
+            System.out.println("Operation canceled.");
+            InputLogic.readString("Press enter to continue...");
+            return;
+        }
+    
+        // Remove the rooms
+        for (int i = 0; i < numRoomsToRemove; i++) {
+            Room room = removableRooms.get(removableRooms.size() - 1 - i);
+            hotel.getRooms().remove(room);
+        }
 
 
-    private void updateRoomPrice(Hotel hotel) {
+        System.out.println(numRoomsToRemove + " rooms removed successfully.");
+        InputLogic.readString("Press enter to continue...");
+    }
+    
+    /**
+     * Updates the price of all rooms in the hotel. 
+     * As long as there are no active reservations.
+     * 
+     * @param hotel
+     * @return void
+     */
+
+    public void updateRoomPrice(Hotel hotel) {
         if (hotel.getReservationDetails().isEmpty()) {
             double newPrice = InputLogic.readDouble("Enter the new room price: ", 100.0, 10000.0);
             for (Room room : hotel.getRooms()) {
@@ -139,9 +244,15 @@ public class ManageHotel{
         }
         InputLogic.readString("Press enter to continue...");
     }
-        
 
-    private void removeReservation(Hotel hotel) {
+    /**
+     * Removes a reservation from the hotel.
+     * 
+     * @param hotel
+     * @return void
+     */
+
+    public void removeReservation(Hotel hotel) {
         List<Booking> bookings = hotel.getReservationDetails();
 
         if (bookings.isEmpty()) {
@@ -170,21 +281,28 @@ public class ManageHotel{
         Booking bookingToRemove = bookings.get(reservationNumber - 1);
         Room room = bookingToRemove.getRoom();
 
-        // Update room availability
+        // update room availability
         for (int i = bookingToRemove.getCheckIn(); i <= bookingToRemove.getCheckOut(); i++) {
             room.getReservations().remove((Integer) i);
         }
         room.setAvailable(true);
 
-        // Remove the booking from the hotel's booking list
+        // remove the booking from the hotel's booking list
         bookings.remove(bookingToRemove);
 
         System.out.println("Reservation removed successfully.");
         InputLogic.readString("Press enter to continue...");
     }
 
+    /**
+     * Removes a hotel from the list of hotels.
+     * 
+     * @param hotels
+     * @param hotel
+     * @return void
+     */
 
-    private void removeHotel(List<Hotel> hotels, Hotel hotel) {
+    public void removeHotel(List<Hotel> hotels, Hotel hotel) {
 
         int confirm = InputLogic.readInt("Are you sure you want to remove the hotel " + hotel.getName() + "? (0 - No, 1 - Yes): ", 0, 1);
         if (confirm == 0) {
