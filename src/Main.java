@@ -34,7 +34,7 @@ public class Main{
         // start of the program
         do{
             TextDisplay.displayMainChoices();
-            choice = InputLogic.readInt("Choose: ", 0, 5);  // gets user input. Refer to the InputLogic for more details
+            choice = InputLogic.readInt("Choose: ", 0, 4);  // gets user input. Refer to the InputLogic for more details
 
             if (choice == 1){
                 Hotel hotel = Hotel.createHotel();
@@ -52,11 +52,11 @@ public class Main{
             else if(choice == 4){
                 Booking.createBooking(hotels);
             }
-
+            /* Used for debugging. Prints out the hashsets used for booking the room.
             else if(choice == 5){
                 System.out.println(getHotels().get(0).getRooms().get(0).getReservations());
                 InputLogic.readString("Press enter to continue...");
-            }
+            }*/
         }while(choice != 0);
 
         InputLogic.closeScanner();
