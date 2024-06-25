@@ -91,15 +91,15 @@ public class ManageHotel{
     public void changeHotelName(Hotel hotel) {
         String newName = InputLogic.readString("Enter the new hotel name: ");
 
-        int confirm = InputLogic.readInt("Are you sure you want to change the name of the hotel " + hotel.getName() + "? (0 - No, 1 - Yes): ", 0, 1);
-        if (confirm == 0) {
-            System.out.println("Operation canceled.");
+        if(newName.equals(hotel.getName())){
+            System.out.println("The new name is the same as the current name.");
             InputLogic.readString("Press enter to continue...");
             return;
         }
 
-        if(newName.equals(hotel.getName())){
-            System.out.println("The new name is the same as the current name.");
+        int confirm = InputLogic.readInt("Are you sure you want to change the name of the hotel " + hotel.getName() + "? (0 - No, 1 - Yes): ", 0, 1);
+        if (confirm == 0) {
+            System.out.println("Operation canceled.");
             InputLogic.readString("Press enter to continue...");
             return;
         }
