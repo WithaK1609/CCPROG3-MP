@@ -13,7 +13,7 @@ public class ManageHotel{
     /**
      * Manages a specific hotel. 
      * 
-     * @param hotels
+     * @param hotels - list of hotels
      * @return void
      */
    
