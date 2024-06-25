@@ -24,6 +24,10 @@ public class Hotel{
     public List<Room> getRooms(){ 
         return rooms;
     }
+
+    public List<Booking> getReservationDetails(){
+        return reservationDetails;
+    }
     
     public boolean checkMaxCapacity(){
         return rooms.size() == 50;  // makes sure that the capacity of rooms does not exceed 50

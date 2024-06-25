@@ -1,20 +1,19 @@
 import java.util.*;
 
-public class Booking{
+public class Booking {
     private int checkIn;
     private int checkOut;
     private Room room;
     private String guestName;
     private double totalPrice;
-    
+
     public Booking(String guestName, Room room, int checkIn, int checkOut) {
         this.guestName = guestName;
         this.room = room;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
-        this.totalPrice = calculateTotalPrice();
     }
-    
+
     // getters
     public String getGuestName(){
         return guestName;
@@ -36,14 +35,9 @@ public class Booking{
         return checkOut;
     }
 
-
     // setters
     public void setGuestName(String guestName) {
         this.guestName = guestName;
-    }
-    
-    public void getTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
     }
 
     public void setCheckIn(int checkIn) {
@@ -58,19 +52,12 @@ public class Booking{
         this.room = room;
     }
 
-    private double calculateTotalPrice(){
-        return (checkOut - checkIn) * room.getPrice();
-    }
-
-
-    
     /** 
      * This methods handles how to create a booking.
      * @param hotels
      * @return Booking
      */
     public static Booking createBooking(List<Hotel> hotels){
-        
         // declare necessary variables
         Booking booking = null;
         boolean bookingConfirmed = false;
@@ -140,14 +127,13 @@ public class Booking{
                 selectedRoom.setAvailable(false);
                 for (int i = checkIn; i <= checkOut; i++) {
                     selectedRoom.getReservations().add(i);
-                    selectedHotel.confirmBooking(booking);
                 }
+                selectedHotel.confirmBooking(booking); // moved this out the for loop cause it was causing duplicates of bookings
                 bookingConfirmed = true;    // breaks the loop
-                InputLogic.readString("Room Sucessfully Booked! Have a nice day");
+                InputLogic.readString("Room Successfully Booked! Have a nice day");
                 return booking;
             }
         }
         return null;        // booking not confirmed  
     }
-
 }
