@@ -103,6 +103,7 @@ public class TextDisplay{
         System.out.println("Staying at Room number: " + booking.getRoom().getName());
         System.out.println("Check-In: " + booking.getCheckIn());
         System.out.println("Check-Out: " + booking.getCheckOut());
+        System.out.println("Base Room fee: " + booking.getRoom().getPrice());
         System.out.println("Total Booking fee: " + booking.getTotalPrice());
     }
 
