@@ -197,7 +197,7 @@ public class Booking {
             confirmBooking = InputLogic.readInt("Confirm booking? (1 - Yes, 0 - No)? ", 0, 1);
             
             if (confirmBooking == 1){      // booking confirmed
-                selectedRoom.setAvailable(false);
+                //selectedRoom.setAvailable(false);     // not being used
                 for (int i = checkIn; i <= checkOut; i++) {
                     selectedRoom.getReservations().add(i);
                 }

@@ -10,7 +10,7 @@ import java.util.*;
 public class Room{
     private String name;
     private double price;
-    private boolean isAvailable;
+    private boolean isAvailable;       // this is not being used but might be useful for part 2
     private Set<Integer> reservations; // Key: booked day
 
     /**
