@@ -93,11 +93,20 @@ public class ManageHotel{
 
     public void changeHotelName(Hotel hotel) {
         String newName = InputLogic.readString("Enter the new hotel name: ");
+        List<Hotel> hotels = Main.getHotels();
 
         if(newName.equals(hotel.getName())){
             System.out.println("The new name is the same as the current name.");
             InputLogic.readString("Press enter to continue...");
             return;
+        }
+
+        for (Hotel h : hotels) {
+            if (h.getName().equalsIgnoreCase(newName)) {
+                System.out.println("A hotel with this name already exists.");
+                InputLogic.readString("Press enter to continue...");
+                return;
+            }
         }
 
         int confirm = InputLogic.readInt("Are you sure you want to change the name of the hotel " + hotel.getName() + "? (0 - No, 1 - Yes): ", 0, 1);
