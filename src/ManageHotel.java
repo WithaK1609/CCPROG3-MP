@@ -291,6 +291,7 @@ public class ManageHotel{
                                ", Check-Out: " + booking.getCheckOut());
         }
 
+        
         int reservationNumber = InputLogic.readInt("Enter the number of the reservation to remove (0 to cancel): ", 0, bookings.size());
         
         if (reservationNumber == 0) {
@@ -298,8 +299,15 @@ public class ManageHotel{
             InputLogic.readString("Press enter to continue...");
             return;
         }
-
         Booking bookingToRemove = bookings.get(reservationNumber - 1);
+        int confirm = InputLogic.readInt("Are you sure you want to remove the reservation of " + bookingToRemove.getGuestName() + "? (0 - No, 1 - Yes): ", 0, 1);
+        if (confirm == 0) {
+            System.out.println("Operation canceled.");
+            InputLogic.readString("Press enter to continue...");
+            return;
+        }
+
+    
         Room room = bookingToRemove.getRoom();
 
         // update room availability
