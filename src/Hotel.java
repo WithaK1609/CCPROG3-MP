@@ -51,6 +51,15 @@ public class Hotel{
     }
 
     /**
+     * Sets the list of rooms in the hotel.
+     *
+     * @param rooms the new list of rooms in the hotel
+     */
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
+    }
+
+    /**
      * Returns the list of reservation details in the hotel.
      *
      * @return the list of reservation details in the hotel
@@ -65,97 +74,20 @@ public class Hotel{
         return "Hotel Name: " + getName() + "\nNumber of Rooms: " + getRooms().size();
     }
 
-    
     /** 
      * Checks if hotel name is unique.
      * @param name - name of the hotel
      * @param hotels - list of hotels
      * @return boolean
      */
-    private static boolean isUnique(String name, List<Hotel> hotels){
-        for (Hotel hotel : hotels) {
+    public boolean isHotelNameUnique(String name, List<Hotel> hotels){
+       for (Hotel hotel : hotels) {
             if (hotel.getName().equalsIgnoreCase(name)){
                 return false;
             }
         }
         return true;
     }
-
-    
-    /** 
-     * This methods handles how to create a hotel.
-     * @return Hotel
-     */
-    public static Hotel createHotel(){
-        // declare necessary variables
-        Hotel hotel = null;
-        boolean hotelCreationConfirm = false;
-        int confirmHotel = -1;
-        
-        while(!hotelCreationConfirm){
-            String hotelName = null;
-            
-            do{
-                TextDisplay.design();
-                hotelName = InputLogic.readString("Enter the hotel name: ");
-                
-                if(hotelName.isEmpty()){
-                    System.out.println("Please enter a valid hotel name!");
-                }
-
-                if (!isUnique(hotelName, Main.getHotels())){    // checks if the hotel name is unique
-                    System.out.println("Hotel name already exists!");
-                }
-            }while(!isUnique(hotelName, Main.getHotels()) || hotelName.isEmpty());
-            
-
-            int numberOfRooms = InputLogic.readInt("Enter how many rooms this hotel will have: ", 1, 50);
-
-            hotel = new Hotel(hotelName);     // instantiate new hotel
-
-            // Create rooms based on number of rooms with naming scheme of 101, 102, 103, etc.
-            if (numberOfRooms > 10){
-                int hotelFloors = numberOfRooms / 10;
-                int createdRooms = 0;
-                while (createdRooms < numberOfRooms){
-                    for (int i = 1; i <= hotelFloors && createdRooms < numberOfRooms; i++) {
-                        for (int j = 1; j <= 10 && createdRooms < numberOfRooms; j++) {
-                            if (j == 10)
-                                hotel.rooms.add(new Room((i + "" + j)));
-                            else
-                                hotel.rooms.add(new Room((i + "0" + j)));
-                            createdRooms++;
-                        }
-                    }
-                }
-            }
-
-            // Create rooms based on number of rooms with naming scheme of 101, 102, 103, etc. For under 10 rooms
-            else{
-                
-                for (int i = 1; i <= numberOfRooms; i++) {
-                    if(i < 10)
-                        hotel.rooms.add(new Room("10" + i));
-                    else
-                        hotel.rooms.add(new Room("1" + i));
-
-                }
-            }
-            
-            confirmHotel = InputLogic.readInt("Confirm Hotel Creation? (1 - Yes, 0 - No)? ", 0, 1);
-            
-            if (confirmHotel == 1){     // confirmed creation of hotel
-                TextDisplay.design();
-                System.out.println("Hotel successfully created!");
-                InputLogic.readString("Press enter to exit...");
-                hotelCreationConfirm = false;
-                return hotel;   // return hotel to be added to arraylist in main
-            }
-        }
-        return null;    // hotel not confirmed
-    }
-    
-    
     /**
      * Checks if a room is available in the hotel.
      *
