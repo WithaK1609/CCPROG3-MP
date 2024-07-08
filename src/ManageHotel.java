@@ -16,7 +16,7 @@ public class ManageHotel{
      * @param hotels - list of hotels
      * @return void
      */
-   
+    private HotelManager hotelManager = new HotelManager();
     public void manageSpecificHotel(List<Hotel> hotels){
         int choice = -1;
 
@@ -93,7 +93,7 @@ public class ManageHotel{
 
     public void changeHotelName(Hotel hotel) {
         String newName = InputLogic.readString("Enter the new hotel name: ");
-        List<Hotel> hotels = Main.getHotels();
+        List<Hotel> hotels = hotelManager.getHotels();
 
         if(newName.equals(hotel.getName())){
             System.out.println("The new name is the same as the current name.");
