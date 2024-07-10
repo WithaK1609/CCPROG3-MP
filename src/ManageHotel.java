@@ -250,6 +250,14 @@ public class ManageHotel{
             for (Room room : hotel.getRooms()) {
                 room.setPrice(newPrice);
             }
+
+            for (DeluxeRoom deluxeRoom : hotel.getDeluxeRooms()) {
+                deluxeRoom.setPrice(RoomPrice.calculateDeluxePrice(newPrice));
+            }
+
+            for (ExecutiveRoom executiveRoom : hotel.getExecutiveRooms()) {
+                executiveRoom.setPrice(RoomPrice.calculateExecutivePrice(newPrice));
+            }
               
             int confirm = InputLogic.readInt("Are you sure you want to change the base price of the rooms in Hotel " + hotel.getName() + "? (0 - No, 1 - Yes): ", 0, 1);
             if (confirm == 0) {
@@ -314,7 +322,7 @@ public class ManageHotel{
         for (int i = bookingToRemove.getCheckIn(); i <= bookingToRemove.getCheckOut(); i++) {
             room.getReservations().remove((Integer) i);
         }
-        room.setAvailable(true);
+        //room.setAvailable(true);
 
         // remove the booking from the hotel's booking list
         bookings.remove(bookingToRemove);
