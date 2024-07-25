@@ -206,7 +206,7 @@ public class Booking {
                 for (int i = checkIn; i <= checkOut; i++) {
                     selectedRoom.getReservations().add(i);
                 }
-                selectedHotel.confirmBooking(booking);    // confirm booking
+                selectedHotel.confirmBooking(booking); // moved this out the for loop cause it was causing duplicates of bookings
                 bookingConfirmed = true;    // breaks the loop
                 TextDisplay.design();
                 InputLogic.readString("Room Successfully Booked! Have a nice day");

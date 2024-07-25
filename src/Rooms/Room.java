@@ -7,7 +7,7 @@
  * @version 1.0
  */
 import java.util.*;
-public class Room {
+public class Room{
 
     protected String name;
     protected String description;
@@ -16,27 +16,16 @@ public class Room {
     //private boolean isAvailable;       // this is not being used but might be useful for part 2
     protected Set<Integer> reservations; // Key: booked day
     protected DatePriceModifier datePriceModifier;
-    
-    // Constructor
-    public Room(String name, String description, int capacity, double price) {
-        this.name = name;
-        this.description = description;
-        this.capacity = capacity;
-        this.price = price;
-        this.reservations = new HashSet<>();
-        this.datePriceModifier = new DatePriceModifier();
-    }
-    
     /**
      * Creates a new Room with the specified name and price.
      *
      * @param name the name of the room
      */
-    // Constructor with name parameter
+    // Constructor
     public Room(String name){
         this.name = name;
         this.description = "This is a base room";
-        this.price = RoomPricer.BaseRoomPrice(1299.99);
+        this.price = RoomPrice.calculateBaseRoomPrice(1299.99);
         this.capacity = 2;
         this.reservations = new HashSet<>();
         this.datePriceModifier = new DatePriceModifier();
@@ -46,7 +35,7 @@ public class Room {
     public Room(String name, double price){
         this.name = name;
         this.description = "This is a base room";
-        this.price = RoomPricer.BaseRoomPrice(price);
+        this.price = RoomPrice.calculateBaseRoomPrice(price);
         this.capacity = 2;
         this.reservations = new HashSet<>();
         this.datePriceModifier = new DatePriceModifier();
@@ -164,7 +153,7 @@ public class Room {
      */
     @Override
     public String toString() {
-        return "Room Name: " + this.name + "\n" + "Description: " + this.description + "\n" + "Price: " + this.price + "\n" + "Capacity: " + this.capacity + "\n";
+        return "Room " + name + ": Price " + price;
     }
 
 }

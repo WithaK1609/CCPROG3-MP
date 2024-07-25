@@ -2,7 +2,7 @@
  * Represents the main class of the program.
  *
  * <p>This class initializes the list of hotels and bookings, and creates instances of the `ViewHotel` and `ManageHotel` classes.
- * <p>It then enters a loop where it displays the main choices and performs the corresponding actions based on the user's input.
+ * It then enters a loop where it displays the main choices and performs the corresponding actions based on the user's input.
  *
  * @author Jakob Hernandez && Kian Daylag
  * @version 1.0
@@ -14,7 +14,6 @@ public class Main{
      * @param args the command line arguments
      */
     public static void main(String[] args){
-        //new GUI();
         HotelManager hotelManager = new HotelManager();
         ViewHotel viewHotel = new ViewHotel();
         ManageHotel manageHotel = new ManageHotel();
@@ -25,7 +24,8 @@ public class Main{
         // start of the program
         do{
             TextDisplay.displayMainChoices();
-            choice = InputLogic.readInt("Choose: ", 0, 5);  // gets user input. Refer to the InputLogic for more details
+            choice = InputLogic.readInt("Choose: ", 0, 4);  // gets user input. Refer to the InputLogic for more details
+
             if (choice == 1){
                 hotelManager.createHotel();
             }
@@ -41,13 +41,11 @@ public class Main{
             else if(choice == 4){
                 Booking.createBooking(hotelManager.getHotels());
             }
-            
+            /* Used for debugging. Prints out the hashsets used for booking the room.
             else if(choice == 5){
-                for(Hotel hotel : hotelManager.getHotels()){
-                    System.out.println(hotel.getRooms());
-                }
+                System.out.println(getHotels().get(0).getRooms().get(0).getReservations());
                 InputLogic.readString("Press enter to continue...");
-            }
+            }*/
         }while(choice != 0);
 
         InputLogic.closeScanner();
