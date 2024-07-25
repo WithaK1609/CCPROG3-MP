@@ -188,7 +188,12 @@ public class Booking {
             int selectRoom = InputLogic.readInt("Enter which room you will be staying (1 - " + availableRooms.size() + "): ", 1, availableRooms.size());
             
             Room selectedRoom = availableRooms.get(selectRoom - 1);                
-            double totalPrice = (checkOut - checkIn) * selectedRoom.getPrice();     // calculate total price. Can't use the method above as it is not static
+            double totalPrice = 0.0;
+            DatePriceModifier modifier = selectedRoom.getDatePriceModifier();
+            for (int i = checkIn; i <= checkOut; i++) {
+                double rate = modifier.getPriceRate(i);
+                totalPrice += selectedRoom.getPrice() * rate;
+            }
             booking = new Booking(guestName, selectedRoom, checkIn, checkOut, totalPrice);      // create new booking object
             
             // prints out booking details

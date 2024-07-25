@@ -48,7 +48,7 @@ public class ManageHotel{
                 TextDisplay.displayManageHotelOptions(choice, hotels);            
                 TextDisplay.design();
 
-                int chooseViewFunction = InputLogic.readInt("Choose: ", 0, 6);
+                int chooseViewFunction = InputLogic.readInt("Choose: ", 0, 7);
                 switch (chooseViewFunction) {
                     case 1:
                         changeHotelName(selectedHotel);
@@ -72,6 +72,10 @@ public class ManageHotel{
 
                     case 6:
                         removeHotel(hotels, selectedHotel);
+                        break;
+
+                    case 7:
+                        modifyDatePrice(selectedHotel);
                         break;
 
                     case 0:
@@ -353,5 +357,35 @@ public class ManageHotel{
 
     }
 
+    /**
+     * Modifies a room's price rate for a specific date.
+     * 
+     * @param hotel hotel to modify room price on specific date.
+     * 
+     */
+
+    public void modifyDatePrice(Hotel hotel) {
+        hotel.printAllRooms();
+        int chosenRoom = InputLogic.readInt("Select a room to modify price rates: ", 1, hotel.getRooms().size());
+        Room specificRoom = hotel.getRooms().get(chosenRoom - 1);
+
+        int date = InputLogic.readInt("Enter the date to modify (1-31, 0 to EXIT): ", 0, 31);
+        if (date == 0) {
+            return;
+        }
+
+        double rate = InputLogic.readDouble("Enter the new price rate (0.5 to 1.5): ", 0.5, 1.5);
+        specificRoom.getDatePriceModifier().setPriceRate(date, rate);
+
+        System.out.println("Price rate for date " + date + " has been set to " + (rate * 100) + "% of it's original price.");
+
+        int confirm = InputLogic.readInt("Are you sure you want to modify the price for this date? (0 - No, 1 - Yes): ", 0, 1);
+        if (confirm == 0) {
+            System.out.println("Operation canceled.");
+            InputLogic.readString("Press enter to continue...");
+            return;
+        }
+        
+    }
 
 }

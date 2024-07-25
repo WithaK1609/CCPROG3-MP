@@ -89,6 +89,7 @@ public class TextDisplay{
         System.out.println("\t[4] Update Room price");
         System.out.println("\t[5] Remove Reservation");
         System.out.println("\t[6] Remove Hotel");
+        System.out.println("\t[7] Modify Date Price");
         System.out.println("\t[0] Go Back");
     }
 
@@ -104,7 +105,7 @@ public class TextDisplay{
         System.out.println("Check-In: " + booking.getCheckIn());
         System.out.println("Check-Out: " + booking.getCheckOut());
         System.out.println("Base Room fee: " + booking.getRoom().getPrice());
-        System.out.println("Total Booking fee: " + booking.getTotalPrice());
+        System.out.println("Total Booking fee: " + String.format("%.3f", booking.getTotalPrice())); // prints only 3 decimal places
     }
 
 }

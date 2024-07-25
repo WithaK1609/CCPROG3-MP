@@ -8,13 +8,14 @@
  */
 import java.util.*;
 public class Room{
+
     protected String name;
     protected String description;
     protected int capacity;
     protected double price;
     //private boolean isAvailable;       // this is not being used but might be useful for part 2
     protected Set<Integer> reservations; // Key: booked day
-
+    protected DatePriceModifier datePriceModifier;
     /**
      * Creates a new Room with the specified name and price.
      *
@@ -27,6 +28,7 @@ public class Room{
         this.price = RoomPrice.calculateBaseRoomPrice(1299.99);
         this.capacity = 2;
         this.reservations = new HashSet<>();
+        this.datePriceModifier = new DatePriceModifier();
     }
 
     // Constructor with price parameter
@@ -36,6 +38,7 @@ public class Room{
         this.price = RoomPrice.calculateBaseRoomPrice(price);
         this.capacity = 2;
         this.reservations = new HashSet<>();
+        this.datePriceModifier = new DatePriceModifier();
     }
 
 
@@ -65,6 +68,16 @@ public class Room{
      */
     public double getPrice(){
         return price;
+    }
+    
+    /**
+     * Gets the date price modifier.
+     *
+     * @return returns the date price modifier
+     */
+
+    public DatePriceModifier getDatePriceModifier() {
+        return datePriceModifier;
     }
 
     /**
@@ -130,6 +143,8 @@ public class Room{
     public void setReservations(Set<Integer> reservations) {
         this.reservations = reservations;
     }
+
+
 
      /**
      * Returns a string representation of the room.
