@@ -23,6 +23,7 @@ public class HotelManager{
     public void setHotels(List<Hotel> hotels) {
         this.hotels = new ArrayList<>(hotels);
     }
+
     /*
      * This methods handles the creation of rooms based on number of rooms with naming scheme of 101, 102, 103, etc.
      */
@@ -46,7 +47,6 @@ public class HotelManager{
 
         // Create rooms based on number of rooms with naming scheme of 101, 102, 103, etc. For under 10 rooms
         else{
-            
             for (int i = 1; i <= numberofBaseRooms; i++) {
                 if(i < 10)
                     hotel.getRooms().add(new Room("B" + "10" + i));
@@ -64,9 +64,9 @@ public class HotelManager{
                 for (int i = 1; i <= hotelFloors && createdRooms < numberOfDeluxeRooms; i++) {
                     for (int j = 1; j <= 10 && createdRooms < numberOfDeluxeRooms; j++) {
                         if (j == 10)
-                            hotel.getDeluxeRooms().add(new DeluxeRoom(("D" + i + "" + j)));
+                            hotel.getRooms().add(new DeluxeRoom(("D" + i + "" + j)));
                         else
-                            hotel.getDeluxeRooms().add(new DeluxeRoom(("D" + i + "0" + j)));
+                            hotel.getRooms().add(new DeluxeRoom(("D" + i + "0" + j)));
                         createdRooms++;
                     }
                 }
@@ -77,9 +77,9 @@ public class HotelManager{
             
             for (int i = 1; i <= numberOfDeluxeRooms; i++) {
                 if(i < 10)
-                    hotel.getDeluxeRooms().add(new DeluxeRoom("D" +  "10" + i));
+                    hotel.getRooms().add(new DeluxeRoom("D" +  "10" + i));
                 else
-                    hotel.getDeluxeRooms().add(new DeluxeRoom("D" +  "1" + i));
+                    hotel.getRooms().add(new DeluxeRoom("D" +  "1" + i));
 
             }
         }
@@ -92,9 +92,9 @@ public class HotelManager{
                 for (int i = 1; i <= hotelFloors && createdRooms < numberOfExecutiveRooms; i++) {
                     for (int j = 1; j <= 10 && createdRooms < numberOfExecutiveRooms; j++) {
                         if (j == 10)
-                            hotel.getExecutiveRooms().add(new ExecutiveRoom(("E" + i + "" + j)));
+                            hotel.getRooms().add(new ExecutiveRoom(("E" + i + "" + j)));
                         else
-                            hotel.getExecutiveRooms().add(new ExecutiveRoom(("E" + i + "0" + j)));
+                            hotel.getRooms().add(new ExecutiveRoom(("E" + i + "0" + j)));
                         createdRooms++;
                     }
                 }
@@ -105,9 +105,9 @@ public class HotelManager{
             
             for (int i = 1; i <= numberOfExecutiveRooms; i++) {
                 if(i < 10)
-                    hotel.getExecutiveRooms().add(new ExecutiveRoom("E" + "10" + i));
+                    hotel.getRooms().add(new ExecutiveRoom("E" + "10" + i));
                 else
-                    hotel.getExecutiveRooms().add(new ExecutiveRoom("E" + "1" + i));
+                    hotel.getRooms().add(new ExecutiveRoom("E" + "1" + i));
 
             }
         }
@@ -126,21 +126,25 @@ public class HotelManager{
         while(!hotelCreationConfirm){
             String hotelName = null;
             
+            // Enter loop to get hotel name and check if it is unique
             do{
                 TextDisplay.design();
                 hotelName = InputLogic.readString("Enter the hotel name: ");
                 
-                if (!getHotels().isEmpty()){     // checks if the list of hotels is empty
-
+                // checks if the list of hotels is empty
+                if (!getHotels().isEmpty()){     
+                    
+                    // checks if the hotel name is empty
                     if(hotelName.isEmpty()){
                         System.out.println("Please enter a valid hotel name!");
                     }
 
-                    if (!hotel.isHotelNameUnique(hotelName, getHotels())){    // checks if the hotel name is unique
+                    // checks if the hotel name is unique
+                    if (!hotel.isHotelNameUnique(hotelName, getHotels())){    
                         System.out.println("Hotel name already exists!");
                     }
                 }
-            }while(!hotel.isHotelNameUnique(hotelName, getHotels()) || hotelName.isEmpty());
+            }while(!hotel.isHotelNameUnique(hotelName, getHotels()) || hotelName.isEmpty());    // loop until hotel name is unique or not empty
             
             // ask for number of rooms
             System.out.println("NOTE: You will be asked afterwards how many rooms to divide into BASE, DELUXE, and EXECUTIVE rooms.");
@@ -159,7 +163,7 @@ public class HotelManager{
                 TextDisplay.design();
                 System.out.println("Hotel successfully created!");
                 InputLogic.readString("Press enter to exit...");
-                hotelCreationConfirm = false;
+                hotelCreationConfirm = true;
                 hotels.add(hotel);   // return hotel to be added to arraylist of hotels
                 break;
             }

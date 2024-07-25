@@ -3,7 +3,7 @@ import java.util.Scanner;
  * Represents a utility class for handling input logic.
  * 
  * <p>This class provides methods for reading double values, integer values, and strings from the console.
- * It ensures that the input values are within specified ranges and handles invalid inputs gracefully.
+ * <p>It ensures that the input values are within specified ranges and handles invalid inputs gracefully.
  * 
  * @author Jakob Hernandez && Kian Daylag
  * @version 1.0

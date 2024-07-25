@@ -12,16 +12,12 @@ import java.util.*;
 public class Hotel{
     private String name;
     private List<Room> rooms;
-    private List<DeluxeRoom> deluxeRooms;
-    private List<ExecutiveRoom> executiveRooms;
     private List<Booking> reservationDetails;
 
     // Constructor
     public Hotel(String name){
         this.name = name;
         this.rooms = new ArrayList<Room>();
-        this.deluxeRooms = new ArrayList<DeluxeRoom>();
-        this.executiveRooms = new ArrayList<ExecutiveRoom>();
         this.reservationDetails = new ArrayList<Booking>();
     }
     
@@ -61,25 +57,6 @@ public class Hotel{
      */
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
-    }
-
-    public List<DeluxeRoom> getDeluxeRooms() {
-        return deluxeRooms;
-    }
-
-
-    public void setDeluxeRooms(List<DeluxeRoom> deluxeRooms) {
-        this.deluxeRooms = deluxeRooms;
-    }
-
-
-    public List<ExecutiveRoom> getExecutiveRooms() {
-        return executiveRooms;
-    }
-
-
-    public void setExecutiveRooms(List<ExecutiveRoom> executiveRooms) {
-        this.executiveRooms = executiveRooms;
     }
 
     /**

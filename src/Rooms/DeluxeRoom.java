@@ -1,15 +1,32 @@
+/**
+ * Child of Room class.
+ *
+ * <p> This is a version of the Room class that is a Deluxe Room.
+ * @version 1.0
+ */
+
 public class DeluxeRoom extends Room{
+    
+    /**
+     * Constructor for the Deluxe Room.
+     * @param name
+     */
+    
     public DeluxeRoom(String name) {
-        super(name);
-        this.description = "This is a Deluxe Room";
-        this.price = RoomPrice.calculateDeluxePrice(1299.99);
-        this.capacity = 4;
+        super(name, "This is a Deluxe Room", 4, RoomPricer.ExecutivePrice(1299.99));
     }
 
+    /**
+     * Constructor for the Deluxe Room.
+     * @param name
+     * @param price
+     */
     public DeluxeRoom(String name, int price) {
-        super(name);
-        this.description = "This is a Deluxe Room";
-        this.price = RoomPrice.calculateDeluxePrice(price);
-        this.capacity = 4;
+        super(name, "This is a Deluxe Room", 4, RoomPricer.DeluxePrice(price));
+    }
+
+    @Override
+    public String toString() {
+        return "Room Name: " + this.name + "\n" + "Description: " + this.description + "\n" + "Price: " + this.price + "\n" + "Capacity: " + this.capacity + "\n";
     }
 }

@@ -253,14 +253,11 @@ public class ManageHotel{
             double newPrice = InputLogic.readDouble("Enter the new room price: ", 100.0, 10000.0);
             for (Room room : hotel.getRooms()) {
                 room.setPrice(newPrice);
-            }
-
-            for (DeluxeRoom deluxeRoom : hotel.getDeluxeRooms()) {
-                deluxeRoom.setPrice(RoomPrice.calculateDeluxePrice(newPrice));
-            }
-
-            for (ExecutiveRoom executiveRoom : hotel.getExecutiveRooms()) {
-                executiveRoom.setPrice(RoomPrice.calculateExecutivePrice(newPrice));
+                if (room instanceof DeluxeRoom) {
+                    room.setPrice(RoomPricer.DeluxePrice(newPrice));
+                } else if (room instanceof ExecutiveRoom) {
+                    room.setPrice(RoomPricer.ExecutivePrice(newPrice));
+                }
             }
               
             int confirm = InputLogic.readInt("Are you sure you want to change the base price of the rooms in Hotel " + hotel.getName() + "? (0 - No, 1 - Yes): ", 0, 1);
