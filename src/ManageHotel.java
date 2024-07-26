@@ -361,28 +361,36 @@ public class ManageHotel{
      * 
      */
 
-    public void modifyDatePrice(Hotel hotel) {
+     public void modifyDatePrice(Hotel hotel) {
         hotel.printAllRooms();
         int chosenRoom = InputLogic.readInt("Select a room to modify price rates: ", 1, hotel.getRooms().size());
-        Room specificRoom = hotel.getRooms().get(chosenRoom - 1);
-
-        int date = InputLogic.readInt("Enter the date to modify (1-31, 0 to EXIT): ", 0, 31);
-        if (date == 0) {
+        Room specificRoom = hotel.getRooms().get(chosenRoom - 1); // gets room
+    
+        int startDate = InputLogic.readInt("Enter the start date to modify (1-31, 0 to EXIT): ", 0, 31);
+    
+        if (startDate == 0) {
             return;
         }
-
+    
+        int endDate = InputLogic.readInt("Enter the end date to modify (1-31, must be >= start date): ", startDate, 31);
         double rate = InputLogic.readDouble("Enter the new price rate (0.5 to 1.5): ", 0.5, 1.5);
-        specificRoom.getDatePriceModifier().setPriceRate(date, rate);
-
-        System.out.println("Price rate for date " + date + " has been set to " + (rate * 100) + "% of it's original price.");
-
-        int confirm = InputLogic.readInt("Are you sure you want to modify the price for this date? (0 - No, 1 - Yes): ", 0, 1);
-        if (confirm == 0) {
-            System.out.println("Operation canceled.");
-            InputLogic.readString("Press enter to continue...");
-            return;
+    
+        for (int date = startDate; date <= endDate; date++) {
+            specificRoom.getDatePriceModifier().setPriceRate(date, rate);
         }
-        
+
+        if(startDate == endDate)
+            System.out.println("Price rate for day " + startDate + " of the month has been set to " + (rate * 100) + "% of its original price.");
+        else
+            System.out.println("Price rate for days " + startDate + " to " + endDate + " has been set to " + (rate * 100) + "% of its original price.");
+    
+            int confirm = InputLogic.readInt("Are you sure you want to modify the price for these dates? (0 - No, 1 - Yes): ", 0, 1);
+            if (confirm == 0) {
+                System.out.println("Operation canceled.");
+                InputLogic.readString("Press enter to continue...");
+                return;
+        }
     }
+    
 
 }
