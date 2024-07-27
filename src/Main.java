@@ -18,6 +18,7 @@ public class Main{
         HotelManager hotelManager = new HotelManager();
         ViewHotel viewHotel = new ViewHotel();
         ManageHotel manageHotel = new ManageHotel();
+        BookingManager bookingManager = new BookingManager();
         System.out.println("Welcome to the Hotel Reservation System!");
         
         int choice = -1; 
@@ -39,7 +40,7 @@ public class Main{
             }
 
             else if(choice == 4){
-                Booking.createBooking(hotelManager.getHotels());
+                bookingManager.createBooking(hotelManager.getHotels());
             }
             
             else if(choice == 5){
