@@ -64,7 +64,7 @@ public class TextDisplay{
         TextDisplay.design();
         System.out.println("Hotel Name: " + hotels.get(choice-1).getName());
         System.out.println("Number of rooms: " + hotels.get(choice-1).getRooms().size());
-        System.out.println("Estimated earnings: " + "P" + hotels.get(choice-1).getTotalIncome());
+        System.out.println("Estimated earnings: " + "P" + String.format("%.2f", hotels.get(choice-1).getTotalIncome()));
         TextDisplay.design();
         System.out.println("Select an option:");
         System.out.println("\t[1] View Which Rooms are Available");
@@ -104,8 +104,8 @@ public class TextDisplay{
         System.out.println("Staying at Room number: " + booking.getRoom().getName());
         System.out.println("Check-In: " + booking.getCheckIn());
         System.out.println("Check-Out: " + booking.getCheckOut());
-        System.out.println("Base Room fee: " + booking.getRoom().getPrice());
-        System.out.println("Total Booking fee: " + String.format("%.3f", booking.getTotalPrice())); // prints only 3 decimal places
+        System.out.println("Base Room fee: " + String.format("%.2f", booking.getRoom().getPrice()));
+        System.out.println("Total Booking fee: " + String.format("%.2f", booking.getTotalPrice())); // prints only 3 decimal places
     }
 
 }
