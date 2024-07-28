@@ -1,13 +1,4 @@
-/**
- * Manages the price rates for specific dates in a hotel.
- *
- * <p> This class allows setting and getting price rates for specific dates. The price rates can vary between 50% and 150% of the base room price. By default, all dates have a price rate of 100%.
- * The class provides methods to set a price rate for a specific date, get the price rate for a specific date, and retrieve all the date-specific price rates.
- *
- * @author Jakob Hernandez && Kian Daylag
- * @version 1.0
- */
-
+package booking;
 import java.util.HashMap;
 import java.util.Map;
 

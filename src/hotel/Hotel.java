@@ -1,4 +1,8 @@
+package hotel;
 import java.util.*;
+
+import booking.Booking;
+import rooms.Room;
 /**
  * Represents a hotel.
  *

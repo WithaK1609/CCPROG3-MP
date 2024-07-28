@@ -1,4 +1,10 @@
+package GUI;
 import java.util.*;
+
+import booking.Booking;
+import hotel.Hotel;
+import main.InputLogic;
+import rooms.Room;
 /**
  * Represents a utility class for viewing hotel information.
  *

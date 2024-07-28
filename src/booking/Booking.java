@@ -1,3 +1,6 @@
+package booking;
+import rooms.Room;
+
 /**
  * Represents a booking in a hotel.
  *

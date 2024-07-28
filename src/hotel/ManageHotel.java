@@ -1,4 +1,13 @@
+package hotel;
 import java.util.*;
+
+import GUI.TextDisplay;
+import booking.Booking;
+import main.InputLogic;
+import rooms.DeluxeRoom;
+import rooms.ExecutiveRoom;
+import rooms.Room;
+import rooms.RoomPricer;
 
 /**
  * Represents a utility class for managing hotel information.

@@ -1,3 +1,11 @@
+package main;
+import GUI.TextDisplay;
+import GUI.ViewHotel;
+import booking.BookingManager;
+import hotel.Hotel;
+import hotel.HotelManager;
+import hotel.ManageHotel;
+
 /**
  * Represents the main class of the program.
  *

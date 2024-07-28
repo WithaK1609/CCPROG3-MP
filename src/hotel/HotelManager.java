@@ -1,3 +1,4 @@
+package hotel;
 /**
  * Represents a utility class for managing a hotel.
  * <p> This class provides methods to create a hotel. It also provides methods to get and set the list of hotels.
@@ -6,6 +7,12 @@
  * @version 1.0
  */
 import java.util.*;
+
+import GUI.TextDisplay;
+import main.InputLogic;
+import rooms.DeluxeRoom;
+import rooms.ExecutiveRoom;
+import rooms.Room;
 
 public class HotelManager{
 

@@ -1,10 +1,13 @@
+package GUI;
+import hotel.Hotel;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 
 
 public class MainMenu {
-    private List<Hotel> hotels;
+    private ArrayList<Hotel> hotels = new ArrayList<Hotel>();
     private JFrame mainFrame;
     private JButton manageHotelButton, viewHotelButton, createHotelButton, createBookingButton; // buttons
 

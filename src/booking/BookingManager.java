@@ -1,4 +1,9 @@
+package booking;
+import main.InputLogic;
 import java.util.*;
+import GUI.TextDisplay;
+import hotel.Hotel;
+import rooms.Room;
 /**
  * Manages the creation of bookings.
  *

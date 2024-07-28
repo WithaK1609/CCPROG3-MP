@@ -1,4 +1,5 @@
-
+package GUI;
+import hotel.Hotel;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;

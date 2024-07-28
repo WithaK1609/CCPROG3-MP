@@ -1,4 +1,8 @@
+package booking;
 import java.util.*;
+
+import main.InputLogic;
+import rooms.Room;
 /**
  * Manages the coupons. This is where the coupon logic of the booking system is implemented.
  * <p>Contains a list of coupons that can be applied to a booking.
@@ -76,9 +80,10 @@ public class CouponManager{
                             newBookingPrice = bookingPrice - totalDiscount;     // subtracts the discount from the total price
                             System.out.println("Coupon Applied: " + couponList.get(couponCode).getDescription());
                             System.out.println("You have saved: " + String.format("%.2f", totalDiscount));
+                            return newBookingPrice;
                         }
                         else {
-                            System.out.println("You must for 5 days or more to avail this coupon.");
+                            System.out.println("You must STAY for 5 days or more to avail this coupon.");
                             break;
                         }
                     case "PAYDAY":

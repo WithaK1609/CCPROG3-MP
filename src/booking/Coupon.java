@@ -1,3 +1,4 @@
+package booking;
 import java.util.*;
 /**
  * Represents a coupon that can be applied to a booking.

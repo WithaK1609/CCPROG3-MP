@@ -1,4 +1,8 @@
+package GUI;
 import java.util.List;
+
+import booking.Booking;
+import hotel.Hotel;
 /**
  * Represents a utility class for displaying text in the console.
  *

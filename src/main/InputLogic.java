@@ -1,3 +1,4 @@
+package main;
 import java.util.Scanner;
 /**
  * Represents a utility class for handling input logic.
