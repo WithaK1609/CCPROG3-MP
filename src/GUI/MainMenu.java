@@ -1,27 +1,21 @@
-package GUI;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
 
 public class MainMenu {
-    
+    private List<Hotel> hotels;
     private JFrame mainFrame;
-    private JButton manageHotelButton;
-    private JButton viewHotelButton;
-    private JButton createHotelButton;
-    private JButton createBookingButton;
+    private JButton manageHotelButton, viewHotelButton, createHotelButton, createBookingButton; // buttons
 
     public MainMenu() {
-        prepareGUI();
+        GUI();
     }
 
 
-    private void prepareGUI() {
+    private void GUI() {
         mainFrame = new JFrame("Hotel Management System");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.mainFrame.setLayout(new FlowLayout());
         mainFrame.setSize(400, 350);
         mainFrame.setLayout(new GridLayout(4, 1));
 
@@ -44,7 +38,7 @@ public class MainMenu {
 
         manageHotelButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // new ManageHotelWindow(hotels).setVisible(true);
+                new ManageHotelWindow(hotels).setVisible(true);
             }
         });
 
