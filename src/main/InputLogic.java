@@ -21,6 +21,9 @@ public class InputLogic{
       */
      public static boolean validateDouble(String inputTextField, double minChoice, double maxChoice) {
         double input;
+        if (inputTextField == null || inputTextField.trim().isEmpty()) {
+            return false; // if input is null or empty
+        }
         
         try{
             input = Double.parseDouble(inputTextField);
@@ -43,8 +46,11 @@ public class InputLogic{
      */
     
      public static boolean validateInt(String inputTextField, int minChoice, int maxChoices){
-
         int input;
+        
+        if (inputTextField == null || inputTextField.trim().isEmpty()) {
+            return false; // if input is null or empty
+        }
 
         try{
             input = Integer.parseInt(inputTextField);
