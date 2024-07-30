@@ -21,7 +21,7 @@ public class CreateHotelWindow extends JFrame {
     public void initializeGUI() {
         setTitle("Hotel Manager");
         setSize(400, 300);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new GridLayout(6, 2));
 
         // Add components
@@ -41,14 +41,13 @@ public class CreateHotelWindow extends JFrame {
         executiveRoomsField = new JTextField();
         add(executiveRoomsField);
 
-        add(new JLabel()); // spacers
-        add(new JLabel());
+        backButton = new JButton("Back");
+        add(backButton);
 
         createButton = new JButton("Create Hotel");
         add(createButton);
 
-        backButton = new JButton("Back");
-        add(backButton);
+        
 
 
         // Initialize variables to check if the input is valid
@@ -84,14 +83,10 @@ public class CreateHotelWindow extends JFrame {
             }
         });
 
-
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
             }
         });
-        
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        
     }
 }
