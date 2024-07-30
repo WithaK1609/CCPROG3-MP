@@ -68,7 +68,7 @@ public class ManageHotelWindow extends JFrame{
 
         removeReservation.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // new RemoveReservationWindow().setVisible(true);
+                new RemoveBookingWindow(selectedHotel).setVisible(true);
             }
         });
 

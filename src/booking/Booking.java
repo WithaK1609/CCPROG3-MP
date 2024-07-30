@@ -129,7 +129,7 @@ public class Booking {
 
     @Override
     public String toString(){
-        return "\tGuest name: " + guestName + "\n\t" + room + "\n\tCheck in: " + checkIn + "\n\tCheck out: " + checkOut + "\n\tTotal price: " + totalPrice;
+        return "\tGuest name: " + guestName + " " + room + " Check in: " + checkIn + ", Check out: " + checkOut + ", Total price: " + totalPrice;
     }
 
    

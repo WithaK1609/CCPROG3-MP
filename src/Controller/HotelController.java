@@ -9,7 +9,6 @@ package Controller;
 import hotel.Hotel;
 import hotel.HotelManager;
 import main.InputLogic;
-import rooms.Room;
 
 import java.util.*;
 public class HotelController {
