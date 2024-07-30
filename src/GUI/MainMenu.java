@@ -62,7 +62,10 @@ public class MainMenu {
                     JOptionPane.showMessageDialog(mainFrame, "No hotels available. Please create a hotel first.");
                     return;
                 }
-                // new CreateBookingWindow();
+
+                else {
+                    new CreateBookingWindow().setVisible(true);
+                }
             }
         });
 
