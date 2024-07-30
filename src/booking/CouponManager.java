@@ -1,7 +1,5 @@
 package booking;
 import java.util.*;
-
-import main.InputLogic;
 import rooms.Room;
 /**
  * Manages the coupons. This is where the coupon logic of the booking system is implemented.
@@ -13,6 +11,7 @@ import rooms.Room;
  */
 public class CouponManager{
     private HashMap<String, Coupon> couponList;
+
     private Set<Integer> reservationDates;
     
     /**
@@ -34,6 +33,10 @@ public class CouponManager{
         couponList.put(coupon.getCode(), coupon);
     }
 
+    public HashMap<String, Coupon> getCouponList() {
+        return couponList;
+    }
+
     // Removes the coupon from the hashmap
     public void removeCoupon(String code) {
         couponList.remove(code);
@@ -47,62 +50,51 @@ public class CouponManager{
      * @param checkOut
      * @return double
      */
-    public double applyCoupon(Room room, double bookingPrice, int checkIn, int checkOut) {
+    public double applyCoupon(String couponCode, Room room, double bookingPrice, int checkIn, int checkOut) {
         reservationDates.clear();       // clears the reservation dates to ensure no duplication
         for (int i = checkIn; i <= checkOut; i++) {
             reservationDates.add(i);
             reservationDates.remove(checkOut);      // removes the check-out date
         }
-        while(true) {
-            String couponCode = InputLogic.readString("Enter Coupon Code (Enter 0 to Exit): ");
-            // Exit if user enters 0
-            if (couponCode.equals("0")) {
-                break;
-            }
-
             // Checks if the coupon code is valid
-            else if (couponList.containsKey(couponCode)) {
-                // Calculates the total discount and the new booking price
-                double totalDiscount = (bookingPrice * couponList.get(couponCode).getDiscount());  
-                double newBookingPrice = bookingPrice - totalDiscount;
-                
-                // Checks which coupon code was entered
-                switch (couponCode) {
-                    case "I_WORK_HERE":
+        if (couponList.containsKey(couponCode)) {
+            // Calculates the total discount and the new booking price
+            double totalDiscount = (bookingPrice * couponList.get(couponCode).getDiscount());  
+            double newBookingPrice = bookingPrice - totalDiscount;
+            
+            // Checks which coupon code was entered
+            switch (couponCode) {
+                case "I_WORK_HERE":
+                    System.out.println("Coupon Applied: " + couponList.get(couponCode).getDescription());
+                    System.out.println("You have saved: " + String.format("%.2f", totalDiscount));
+                    return newBookingPrice;     // returns the new booking price
+                case "STAY4_GET1":
+                    // ensures that the guest stays for 5 days or more
+                    if (checkOut - checkIn >= 5) {      
+                        // ensures that the discount is only applied to the first night
+                        totalDiscount = (room.getPrice() * couponList.get(couponCode).getDiscount());       
+                        newBookingPrice = bookingPrice - totalDiscount;     // subtracts the discount from the total price
                         System.out.println("Coupon Applied: " + couponList.get(couponCode).getDescription());
                         System.out.println("You have saved: " + String.format("%.2f", totalDiscount));
-                        return newBookingPrice;     // returns the new booking price
-                    case "STAY4_GET1":
-                        // ensures that the guest stays for 5 days or more
-                        if (checkOut - checkIn >= 5) {      
-                            // ensures that the discount is only applied to the first night
-                            totalDiscount = (room.getPrice() * couponList.get(couponCode).getDiscount());       
-                            newBookingPrice = bookingPrice - totalDiscount;     // subtracts the discount from the total price
-                            System.out.println("Coupon Applied: " + couponList.get(couponCode).getDescription());
-                            System.out.println("You have saved: " + String.format("%.2f", totalDiscount));
-                            return newBookingPrice;
-                        }
-                        else {
-                            System.out.println("You must STAY for 5 days or more to avail this coupon.");
-                            break;
-                        }
-                    case "PAYDAY":
-                        // ensures that the reservation dates cover the 15th or 30th of the month
-                        if (reservationDates.contains(15) || reservationDates.contains(30)) {
-                            System.out.println("Coupon Applied: " + couponList.get(couponCode).getDescription());
-                            System.out.println("You have saved: " + String.format("%.2f", totalDiscount));
-                            return newBookingPrice;
-                        }
-                        else {
-                            System.out.println("You MUST HAVE reservations days that cover the 15th or 30th of the month to avail this coupon BUT NOT AS CHECKOUT.");
-                            break;
-                        }
+                        return newBookingPrice;
+                    }
+                    else {
+                        System.out.println("You must STAY for 5 days or more to avail this coupon.");
+                        break;
+                    }
+                case "PAYDAY":
+                    // ensures that the reservation dates cover the 15th or 30th of the month
+                    if (reservationDates.contains(15) || reservationDates.contains(30)) {
+                        System.out.println("Coupon Applied: " + couponList.get(couponCode).getDescription());
+                        System.out.println("You have saved: " + String.format("%.2f", totalDiscount));
+                        return newBookingPrice;
+                    }
+                    else {
+                        System.out.println("You MUST HAVE reservations days that cover the 15th or 30th of the month to avail this coupon BUT NOT AS CHECKOUT.");
+                        break;
                     }
                 }
-            else{
-                System.out.println("Invalid Coupon Code. Please try again.");
             }
-        }
         return bookingPrice;
     }
 
