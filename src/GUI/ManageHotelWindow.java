@@ -12,8 +12,7 @@ public class ManageHotelWindow extends JFrame{
     private JComboBox<Hotel> hotelComboBox;
 
 
-    public ManageHotelWindow(List<Hotel> hotels) {
-        this.hotels = hotels;
+    public ManageHotelWindow() {
         prepareGUI();
     }
 

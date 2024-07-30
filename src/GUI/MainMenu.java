@@ -1,13 +1,9 @@
 package GUI;
-import hotel.Hotel;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
-
 
 public class MainMenu {
-    private ArrayList<Hotel> hotels = new ArrayList<Hotel>();
     private JFrame mainFrame;
     private JButton manageHotelButton, viewHotelButton, createHotelButton, createBookingButton; // buttons
 
@@ -29,7 +25,7 @@ public class MainMenu {
 
         createHotelButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // new CreateHotelWindow(mainFrame, hotels).setVisible(true);
+                new CreateHotelWindow().setVisible(true);
             }
         });
 
@@ -41,7 +37,7 @@ public class MainMenu {
 
         manageHotelButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new ManageHotelWindow(hotels).setVisible(true);
+                new ManageHotelWindow().setVisible(true);
             }
         });
 
@@ -59,10 +55,5 @@ public class MainMenu {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setVisible(true);
     }
-
-    public static void main(String[] args) {
-        new MainMenu();
-    }
-
 
 }
