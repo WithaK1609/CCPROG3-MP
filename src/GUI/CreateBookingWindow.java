@@ -66,7 +66,7 @@ public class CreateBookingWindow extends JFrame {
                 
             }
         });
-
         setVisible(true);
+        setLocationRelativeTo(null); // makes it appear in the center of the screen
     }
 }

@@ -133,9 +133,8 @@ public class SelectHotelWindow extends JFrame {
                 }
             }
         });
-
         
-
+        setLocationRelativeTo(null); // makes it appear in the center of the screen
         setVisible(true);
     }
 }
