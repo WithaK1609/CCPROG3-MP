@@ -1,11 +1,13 @@
-package GUI;
+package manageHotelGUIs;
 
 import hotel.Hotel;
 import hotel.HotelManager;
+import Controller.HotelController;
 
 import javax.swing.*;
-import Controller.HotelController;
 import java.awt.*;
+
+
 
 public class ChangeHotelNameWindow extends JDialog {
     private HotelController hotelController = new HotelController();
@@ -49,5 +51,6 @@ public class ChangeHotelNameWindow extends JDialog {
         add(backButton);
 
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null); // makes it appear in the center of the screen
     }
 }

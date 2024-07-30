@@ -1,6 +1,8 @@
 package GUI;
 import hotel.Hotel;
 import hotel.HotelManager;
+import manageHotelGUIs.ChangeHotelNameWindow;
+import manageHotelGUIs.RemoveHotelWindow;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,7 +1,8 @@
-package GUI;
+package manageHotelGUIs;
 
 import hotel.Hotel;
 import hotel.HotelManager;
+import GUI.ManageHotelWindow;
 
 import javax.swing.*;
 import java.awt.*;
