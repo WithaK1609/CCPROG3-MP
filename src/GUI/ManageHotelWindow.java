@@ -14,10 +14,13 @@ public class ManageHotelWindow extends JFrame{
     private JButton changeHotelName, addRooms, removeRooms, updateRoomsPrice, removeReservation, removeHotel, modifyDatePrice;
     private JComboBox<Hotel> hotelComboBox;
 
-
     public ManageHotelWindow() {
         hotels = HotelManager.getInstance().getHotels();
         prepareGUI();
+    }
+
+    private Hotel getSelectedHotel() {
+        return (Hotel) hotelComboBox.getSelectedItem();
     }
 
     private void prepareGUI() {
@@ -37,7 +40,8 @@ public class ManageHotelWindow extends JFrame{
 
         changeHotelName.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // new ChangeHotelNameWindow().setVisible(true);
+                Hotel selectedHotel = getSelectedHotel();
+                new ChangeHotelNameWindow(selectedHotel).setVisible(true);
             }
         });
 
