@@ -1,8 +1,7 @@
 package GUI;
 import hotel.Hotel;
 import hotel.HotelManager;
-import manageHotelGUIs.ChangeHotelNameWindow;
-import manageHotelGUIs.RemoveHotelWindow;
+import manageHotelGUIs.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -51,7 +50,7 @@ public class ManageHotelWindow extends JFrame{
 
         addRooms.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // new AddRoomsWindow().setVisible(true);
+                new AddRoomsWindow(selectedHotel).setVisible(true);
             }
         });
 
