@@ -166,10 +166,16 @@ public class Room {
      */
     @Override
     public String toString() {
+        return this.name;
+    }
+
+    public String showRoomDescription () {
         return "Room Name: " + this.name + "\n" +
             "Description: " + this.description + "\n" +
             "Price: " + String.format("%.2f", this.price) + "\n" +
             "Capacity: " + this.capacity + "\n";
     }
+
+
 
 }

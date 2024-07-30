@@ -75,23 +75,9 @@ public class Hotel{
     
     @Override
     public String toString(){
-        return String.format("Hotel Name: %-40s | Number of Rooms: %d", getName(), getRooms().size());
+        return getName();
     }
 
-    /** 
-     * Checks if hotel name is unique.
-     * @param name - name of the hotel
-     * @param hotels - list of hotels
-     * @return boolean
-     */
-    public boolean isHotelNameUnique(String name, List<Hotel> hotels){
-       for (Hotel hotel : hotels) {
-            if (hotel.getName().equalsIgnoreCase(name)){
-                return false;
-            }
-        }
-        return true;
-    }
     /**
      * Checks if a room is available in the hotel.
      *
