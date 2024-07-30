@@ -73,9 +73,13 @@ public class Hotel{
         return reservationDetails;
     }
     
+    /**
+     * Formats the hotel name and the number of rooms in the hotel, for the manage hotel combo box.
+     */
+
     @Override
     public String toString(){
-        return getName();
+        return String.format("Hotel Name: %-20s | Number of Rooms: %d", getName(), getRooms().size());
     }
 
     /**
