@@ -75,7 +75,7 @@ public class Hotel{
     
     @Override
     public String toString(){
-        return "Hotel Name: " + getName() + " | Number of Rooms: " + getRooms().size();
+        return String.format("Hotel Name: %-40s | Number of Rooms: %d", getName(), getRooms().size());
     }
 
     /** 

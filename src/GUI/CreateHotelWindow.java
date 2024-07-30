@@ -90,7 +90,8 @@ public class CreateHotelWindow extends JFrame {
                 dispose();
             }
         });
-
-        setVisible(true);
+        
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
     }
 }
