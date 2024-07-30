@@ -2,7 +2,7 @@ package hotel;
 import java.util.*;
 
 import booking.Booking;
-import rooms.Room;
+import rooms.*;
 /**
  * Represents a hotel.
  *
@@ -243,4 +243,35 @@ public class Hotel{
         }
         return totalIncome;
     }
+
+    /**
+     * This method counts the number of base rooms in the hotel.
+     * @return the number of base rooms
+     * 
+     */
+
+    public int countBaseRooms() {
+        return (int) rooms.stream().filter(room -> !(room instanceof ExecutiveRoom) && !(room instanceof DeluxeRoom)).count();
+    }
+
+    /**
+     * This method counts the number of executive rooms in the hotel.
+     * @return the number of executive rooms
+     * 
+     */
+
+    public int countExecutiveRooms() {
+        return (int) rooms.stream().filter(room -> room instanceof ExecutiveRoom).count();
+    }
+
+    /**
+     * This method counts the number of deluxe rooms in the hotel.
+     * @return the number of deluxe rooms
+     */
+
+    public int countDeluxeRooms() {
+        return (int) rooms.stream().filter(room -> room instanceof DeluxeRoom).count();
+    }
+
+
 }

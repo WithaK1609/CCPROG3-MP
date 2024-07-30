@@ -9,6 +9,7 @@ package Controller;
 import hotel.Hotel;
 import hotel.HotelManager;
 import main.InputLogic;
+import rooms.Room;
 
 import java.util.*;
 public class HotelController {
@@ -35,6 +36,42 @@ public class HotelController {
         return true;
     }
 
+    /**
+     * Validates the number of rooms to be added.
+     * @param numberofBaseRooms 
+     * @param numberOfDeluxeRooms
+     * @param numberOfExecutiveRooms
+     * @return boolean
+     */
+
+    public boolean validateAddedNumberOfRooms (String numberofBaseRooms, String numberOfDeluxeRooms, String numberOfExecutiveRooms, hotel.Hotel hotel) {
+        // Validate each input using InputLogic.validateInt
+        boolean isNumberofBaseRoomsValid = InputLogic.validateInt(numberofBaseRooms, 0, 50);
+        boolean isNumberOfDeluxeRoomsValid = InputLogic.validateInt(numberOfDeluxeRooms, 0, 50);
+        boolean isNumberOfExecutiveRoomsValid = InputLogic.validateInt(numberOfExecutiveRooms, 0, 50);
+
+        // Check if all inputs are valid
+        if (!isNumberofBaseRoomsValid || !isNumberOfDeluxeRoomsValid || !isNumberOfExecutiveRoomsValid) {
+            errorMessage = "Please enter a number between 0 and 50 for each room type. The total number of rooms should not exceed 50.";
+            return false;
+        }
+
+        // Parse the strings to integers
+
+        // Calculate the total number of rooms
+        int maxRoomsLeft = 50 - hotel.getRooms().size();
+        int roomsToBeAdded = Integer.parseInt(numberofBaseRooms) + Integer.parseInt(numberOfDeluxeRooms) + Integer.parseInt(numberOfExecutiveRooms);
+
+        // Ensure the total number of rooms does not exceed 50
+        if (roomsToBeAdded > maxRoomsLeft) {
+            errorMessage = "The total number of rooms should not exceed 50.";
+            return false;
+        }
+
+        return true;
+    }
+
+
 
     /**
      * Validates the number of rooms.
@@ -43,6 +80,7 @@ public class HotelController {
      * @param numberOfExecutiveRooms
      * @return boolean
      */
+
     public boolean validateNumberofRooms (String numberofBaseRooms, String numberOfDeluxeRooms, String numberOfExecutiveRooms) {
         // Validate each input using InputLogic.validateInt
         boolean isNumberofBaseRoomsValid = InputLogic.validateInt(numberofBaseRooms, 1, 50);
