@@ -10,7 +10,7 @@ public class CreateHotelWindow extends JFrame {
     private JTextField baseRoomsField;
     private JTextField deluxeRoomsField;
     private JTextField executiveRoomsField;
-    private JButton createButton;
+    private JButton createButton, backButton;
     private HotelController hotelController = new HotelController();
     private HotelManager hotelManager = HotelManager.getInstance();
     
@@ -41,8 +41,15 @@ public class CreateHotelWindow extends JFrame {
         executiveRoomsField = new JTextField();
         add(executiveRoomsField);
 
+        add(new JLabel()); // spacers
+        add(new JLabel());
+
         createButton = new JButton("Create Hotel");
         add(createButton);
+
+        backButton = new JButton("Back");
+        add(backButton);
+
 
         // Initialize variables to check if the input is valid
        
@@ -70,6 +77,13 @@ public class CreateHotelWindow extends JFrame {
                     JOptionPane.showMessageDialog(CreateHotelWindow.this, "Hotel created successfully!");
                     dispose();
                 }
+            }
+        });
+
+
+        backButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
             }
         });
 
