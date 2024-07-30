@@ -144,4 +144,13 @@ public class HotelManager{
         addRooms(numberOfBaseRooms, numberOfDeluxeRooms, numberOfExecutiveRooms, hotel);   // add rooms to hotel
         addHotel(hotel); // add hotel to list of hotels
     }
+
+    /**
+     * This method removes a hotel from the list of hotels.
+     * @param hotel
+     */
+
+    public void removeHotel(Hotel hotel) {
+        hotels.remove(hotel);
+    }
 }

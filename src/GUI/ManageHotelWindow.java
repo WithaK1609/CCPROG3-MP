@@ -38,9 +38,11 @@ public class ManageHotelWindow extends JFrame{
         removeHotel = new JButton("Remove Hotel");
         modifyDatePrice = new JButton("Modify Date Price");
 
+        Hotel selectedHotel = getSelectedHotel();
+
         changeHotelName.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Hotel selectedHotel = getSelectedHotel();
+                
                 new ChangeHotelNameWindow(selectedHotel).setVisible(true);
             }
         });
@@ -71,7 +73,7 @@ public class ManageHotelWindow extends JFrame{
 
         removeHotel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // new RemoveHotelWindow().setVisible(true);
+                new RemoveHotelWindow(selectedHotel, ManageHotelWindow.this).setVisible(true);
             }
         });
 
@@ -91,6 +93,7 @@ public class ManageHotelWindow extends JFrame{
         add(modifyDatePrice);
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null); // makes it appear in the center of the screen
     }
 
 }
