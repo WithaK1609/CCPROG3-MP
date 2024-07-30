@@ -1,18 +1,22 @@
 package GUI;
 import hotel.Hotel;
+import hotel.HotelManager;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ManageHotelWindow extends JFrame{
 
-    private List<Hotel> hotels;
+    private List<Hotel> hotels = new ArrayList<>();
     private JButton changeHotelName, addRooms, removeRooms, updateRoomsPrice, removeReservation, removeHotel, modifyDatePrice;
     private JComboBox<Hotel> hotelComboBox;
 
 
     public ManageHotelWindow() {
+        hotels = HotelManager.getInstance().getHotels();
         prepareGUI();
     }
 
