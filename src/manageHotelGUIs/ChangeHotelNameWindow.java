@@ -6,6 +6,7 @@ import Controller.HotelController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 
 
@@ -25,21 +26,24 @@ public class ChangeHotelNameWindow extends JDialog {
         saveButton = new JButton("Save");
         backButton = new JButton("Back");
 
-        saveButton.addActionListener(e -> {
-            String newName = nameField.getText();
 
-            if (newName.length() > 20) {
-                JOptionPane.showMessageDialog(this, "Hotel name cannot be longer than 20 characters.", "Error", JOptionPane.ERROR_MESSAGE);
-            } else if (!hotelController.isHotelNameUnique(newName, hotelManager.getHotels())) {
-                JOptionPane.showMessageDialog(this, "Hotel name already exists! Please choose a different name.");
-            } else {
-                int result = JOptionPane.showConfirmDialog(this, "Are you sure you want to change the hotel name to \"" + newName + "\"?", "Confirm Change", JOptionPane.YES_NO_OPTION);
-                if (result == JOptionPane.YES_OPTION) {
-                    hotel.setName(newName);
-                    JOptionPane.showMessageDialog(this, "Hotel name changed to: " + newName);
-                    dispose(); // Close the window
+        saveButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String newName = nameField.getText();
+
+                if (newName.length() > 20) {
+                    JOptionPane.showMessageDialog(ChangeHotelNameWindow.this, "Hotel name cannot be longer than 20 characters.", "Error", JOptionPane.ERROR_MESSAGE);
+                } else if (!hotelController.isHotelNameUnique(newName, hotelManager.getHotels())) {
+                    JOptionPane.showMessageDialog(ChangeHotelNameWindow.this, "Hotel name already exists! Please choose a different name.");
+                } else {
+                    int result = JOptionPane.showConfirmDialog(ChangeHotelNameWindow.this, "Are you sure you want to change the hotel name to \"" + newName + "\"?", "Confirm Change", JOptionPane.YES_NO_OPTION);
+                    if (result == JOptionPane.YES_OPTION) {
+                        hotel.setName(newName);
+                        JOptionPane.showMessageDialog(ChangeHotelNameWindow.this, "Hotel name changed to: " + newName);
+                        dispose(); // Close the window
+                    }
+                    // If result is NO_OPTION, do nothing (name not changed)
                 }
-                // If result is NO_OPTION, do nothing (name not changed)
             }
         });
 
