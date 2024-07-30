@@ -43,92 +43,33 @@ public class HotelManager{
     /*
      * This methods handles the creation of rooms based on number of rooms with naming scheme of 101, 102, 103, etc.
      */
+    
     public void addRooms(int numberofBaseRooms, int numberOfDeluxeRooms, int numberOfExecutiveRooms, Hotel hotel) {
         // Base Rooms
-        if (numberofBaseRooms > 10){    // For over 10 rooms
-            int hotelFloors = numberofBaseRooms / 10;
-            int createdRooms = 0;
-            while (createdRooms < numberofBaseRooms){
-                for (int i = 1; i <= hotelFloors && createdRooms < numberofBaseRooms; i++) {
-                    for (int j = 1; j <= 10 && createdRooms < numberofBaseRooms; j++) {
-                        if (j == 10)
-                            hotel.getRooms().add(new Room(("B" + i + "" + j)));
-                        else
-                            hotel.getRooms().add(new Room(("B" + i + "0" + j)));
-                        createdRooms++;
-                    }
-                }
-            }
+        int existingBaseRooms = (int) hotel.getRooms().stream().filter(room -> room.getName().startsWith("B")).count();
+        for (int i = 1; i <= numberofBaseRooms; i++) {
+            int roomNumber = existingBaseRooms + i;
+            String roomName = String.format("B%02d", roomNumber);
+            hotel.getRooms().add(new Room(roomName));
         }
-
-        // Create rooms based on number of rooms with naming scheme of 101, 102, 103, etc. For under 10 rooms
-        else{
-            for (int i = 1; i <= numberofBaseRooms; i++) {
-                if(i < 10)
-                    hotel.getRooms().add(new Room("B" + "10" + i));
-                else
-                    hotel.getRooms().add(new Room("B" + "1" + i));
-
-            }
-        }
-
+    
         // Deluxe Rooms
-        if (numberOfDeluxeRooms > 10){
-            int hotelFloors = numberOfDeluxeRooms / 10;
-            int createdRooms = 0;
-            while (createdRooms < numberOfDeluxeRooms){
-                for (int i = 1; i <= hotelFloors && createdRooms < numberOfDeluxeRooms; i++) {
-                    for (int j = 1; j <= 10 && createdRooms < numberOfDeluxeRooms; j++) {
-                        if (j == 10)
-                            hotel.getRooms().add(new DeluxeRoom(("D" + i + "" + j)));
-                        else
-                            hotel.getRooms().add(new DeluxeRoom(("D" + i + "0" + j)));
-                        createdRooms++;
-                    }
-                }
-            }
+        int existingDeluxeRooms = (int) hotel.getRooms().stream().filter(room -> room.getName().startsWith("D")).count();
+        for (int i = 1; i <= numberOfDeluxeRooms; i++) {
+            int roomNumber = existingDeluxeRooms + i;
+            String roomName = String.format("D%02d", roomNumber);
+            hotel.getRooms().add(new DeluxeRoom(roomName));
         }
-
-        else{
-            
-            for (int i = 1; i <= numberOfDeluxeRooms; i++) {
-                if(i < 10)
-                    hotel.getRooms().add(new DeluxeRoom("D" +  "10" + i));
-                else
-                    hotel.getRooms().add(new DeluxeRoom("D" +  "1" + i));
-
-            }
-        }
-
+    
         // Executive Rooms
-        if (numberOfExecutiveRooms > 10){
-            int hotelFloors = numberOfExecutiveRooms / 10;
-            int createdRooms = 0;
-            while (createdRooms < numberOfExecutiveRooms){
-                for (int i = 1; i <= hotelFloors && createdRooms < numberOfExecutiveRooms; i++) {
-                    for (int j = 1; j <= 10 && createdRooms < numberOfExecutiveRooms; j++) {
-                        if (j == 10)
-                            hotel.getRooms().add(new ExecutiveRoom(("E" + i + "" + j)));
-                        else
-                            hotel.getRooms().add(new ExecutiveRoom(("E" + i + "0" + j)));
-                        createdRooms++;
-                    }
-                }
-            }
-        }
-
-        else{
-            
-            for (int i = 1; i <= numberOfExecutiveRooms; i++) {
-                if(i < 10)
-                    hotel.getRooms().add(new ExecutiveRoom("E" + "10" + i));
-                else
-                    hotel.getRooms().add(new ExecutiveRoom("E" + "1" + i));
-
-            }
+        int existingExecutiveRooms = (int) hotel.getRooms().stream().filter(room -> room.getName().startsWith("E")).count();
+        for (int i = 1; i <= numberOfExecutiveRooms; i++) {
+            int roomNumber = existingExecutiveRooms + i;
+            String roomName = String.format("E%02d", roomNumber);
+            hotel.getRooms().add(new ExecutiveRoom(roomName));
         }
     }
-
+    
     /** 
      * This methods handles how to create a hotel.
      * 

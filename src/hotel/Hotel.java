@@ -79,7 +79,7 @@ public class Hotel{
 
     @Override
     public String toString(){
-        return String.format("Hotel Name: %-20s | Number of Rooms: %d", getName(), getRooms().size());
+        return getName();
     }
 
     /**
