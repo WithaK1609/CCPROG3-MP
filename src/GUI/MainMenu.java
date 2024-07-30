@@ -1,9 +1,13 @@
 package GUI;
 import javax.swing.*;
+
+import hotel.HotelManager;
+
 import java.awt.*;
 import java.awt.event.*;
 
 public class MainMenu {
+    private HotelManager hotelManager = HotelManager.getInstance();
     private JFrame mainFrame;
     private JButton manageHotelButton, viewHotelButton, createHotelButton, createBookingButton; // buttons
 
@@ -31,18 +35,33 @@ public class MainMenu {
 
         viewHotelButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                if (hotelManager.getHotels().isEmpty()) {
+                    JOptionPane.showMessageDialog(mainFrame, "No hotels available. Please create a hotel first.");
+                    return;
+                }
                 // new ViewHotelWindow(hotels).setVisible(true);
             }
         });
 
         manageHotelButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new ManageHotelWindow().setVisible(true);
+                if (hotelManager.getHotels().isEmpty()) {
+                    JOptionPane.showMessageDialog(mainFrame, "No hotels available. Please create a hotel first.");
+                    return;
+                }
+                else {
+                    new ManageHotelWindow().setVisible(true);
+                }
+                
             }
         });
 
         createBookingButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                if (hotelManager.getHotels().isEmpty()) {
+                    JOptionPane.showMessageDialog(mainFrame, "No hotels available. Please create a hotel first.");
+                    return;
+                }
                 // new CreateBookingWindow();
             }
         });
