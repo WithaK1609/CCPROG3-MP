@@ -58,7 +58,11 @@ public class CreateHotelWindow extends JFrame {
         createButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!hotelController.isHotelNameUnique(hotelNameField.getText(), hotelManager.getHotels())) {
+                if (hotelNameField.getText().length() > 20){
+                    JOptionPane.showMessageDialog(CreateHotelWindow.this, "Hotel name is too long! Please enter a name with less than 20 characters."); 
+                }
+
+                else if (!hotelController.isHotelNameUnique(hotelNameField.getText(), hotelManager.getHotels())) {
                     JOptionPane.showMessageDialog(CreateHotelWindow.this, "Hotel name already exists! Please choose a different name.");
                 }
 
