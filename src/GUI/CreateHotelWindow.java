@@ -88,5 +88,7 @@ public class CreateHotelWindow extends JFrame {
                 dispose();
             }
         });
+
+        setLocationRelativeTo(null); // makes it appear in the center of the screen
     }
 }

@@ -73,6 +73,7 @@ public class MainMenu {
 
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setVisible(true);
+        mainFrame.setLocationRelativeTo(null); // makes it appear in the center of the screen
     }
 
 }
