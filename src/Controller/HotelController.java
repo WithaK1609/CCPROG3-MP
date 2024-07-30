@@ -12,7 +12,13 @@ import main.InputLogic;
 
 import java.util.*;
 public class HotelController {
-     HotelManager hotelManager = HotelManager.getInstance();
+    HotelManager hotelManager = HotelManager.getInstance();
+    private String errorMessage;
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
     /**
      * Checks if hotel name is unique.
      * @param name - name of the hotel
@@ -22,6 +28,7 @@ public class HotelController {
     public boolean isHotelNameUnique(String name, List<Hotel> hotels) {
         for (Hotel hotel : hotels) {
              if (hotel.getName().equalsIgnoreCase(name)){
+                errorMessage = "Hotel name already exists! Please choose a different name.";
                 return false;
             }
         }
@@ -44,6 +51,7 @@ public class HotelController {
 
         // Check if all inputs are valid
         if (!isNumberofBaseRoomsValid || !isNumberOfDeluxeRoomsValid || !isNumberOfExecutiveRoomsValid) {
+            errorMessage = "Please enter a number between 1 and 50 for each room type. The total number of rooms should not exceed 50.";
             return false;
         }
 
@@ -57,6 +65,7 @@ public class HotelController {
 
         // Ensure the total number of rooms does not exceed 50
         if (maxRooms > 50) {
+            errorMessage = "The total number of rooms should not exceed 50.";
             return false;
         }
 
@@ -77,6 +86,7 @@ public class HotelController {
         if (hotelManager.getHotels().isEmpty()) {
             // Check if the hotel name is empty, if the number of rooms are valid
             if (hotelName.isBlank() || !validateNumberofRooms(numberofBaseRooms, numberOfDeluxeRooms, numberOfExecutiveRooms)) {
+                errorMessage = "Please enter a valid hotel name!";
                 return false;
             }
 
@@ -96,6 +106,7 @@ public class HotelController {
         // If the list of hotels is not empty, check if the hotel name is unique
         else {
             if (hotelName.isBlank() || !validateNumberofRooms(numberofBaseRooms, numberOfDeluxeRooms, numberOfExecutiveRooms) || !isHotelNameUnique(hotelName, hotelManager.getHotels())) {
+                errorMessage = "Please enter a valid hotel name!";
                 return false;
             }
             // Conditions are met. Hotel is created.
