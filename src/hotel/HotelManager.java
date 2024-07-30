@@ -7,24 +7,33 @@ package hotel;
  * @version 1.0
  */
 import java.util.*;
-
-import GUI.TextDisplay;
-import main.InputLogic;
 import rooms.DeluxeRoom;
 import rooms.ExecutiveRoom;
 import rooms.Room;
 
 public class HotelManager{
-
+    private static HotelManager instance;
     private List<Hotel> hotels;     // list of hotels
 
     // Constructor
-    public HotelManager() {
+    private HotelManager() {
         hotels = new ArrayList<>();
     }
 
+    // Ensures there is only one instance. Singleton pattern
+    public static synchronized HotelManager getInstance() {
+        if (instance == null) {
+            instance = new HotelManager();
+        }
+        return instance;
+    }
+    
+    public void addHotel(Hotel hotel) {
+        hotels.add(hotel);
+    }
+
     public List<Hotel> getHotels() {
-        return Collections.unmodifiableList(hotels);
+        return hotels;
     }
 
     public void setHotels(List<Hotel> hotels) {
@@ -123,57 +132,16 @@ public class HotelManager{
     /** 
      * This methods handles how to create a hotel.
      * 
+     * @param hotelName - name of the hotel
+     * @param numberOfBaseRooms - number of base rooms
+     * @param numberOfDeluxeRooms - number of deluxe rooms
+     * @param numberOfExecutiveRooms - number of executive rooms
+     * 
      */
-    public void createHotel(){
+    public void createHotel(String hotelName, int numberOfBaseRooms, int numberOfDeluxeRooms, int numberOfExecutiveRooms) {
         // declare necessary variables
-        Hotel hotel = new Hotel(null);
-        boolean hotelCreationConfirm = false;
-        int confirmHotel = -1;
-        
-        while(!hotelCreationConfirm){
-            String hotelName = null;
-            
-            // Enter loop to get hotel name and check if it is unique
-            do{
-                TextDisplay.design();
-                hotelName = InputLogic.readString("Enter the hotel name: ");
-                
-                // checks if the list of hotels is empty
-                if (!getHotels().isEmpty()){     
-                    
-                    // checks if the hotel name is empty
-                    if(hotelName.isEmpty()){
-                        System.out.println("Please enter a valid hotel name!");
-                    }
-
-                    // checks if the hotel name is unique
-                    if (!hotel.isHotelNameUnique(hotelName, getHotels())){    
-                        System.out.println("Hotel name already exists!");
-                    }
-                }
-            }while(!hotel.isHotelNameUnique(hotelName, getHotels()) || hotelName.isEmpty());    // loop until hotel name is unique or not empty
-            
-            // ask for number of rooms
-            System.out.println("NOTE: You will be asked afterwards how many rooms to divide into BASE, DELUXE, and EXECUTIVE rooms.");
-            
-            int numberOfRooms = InputLogic.readInt("Enter how many TOTAL rooms this hotel will have: ", 1, 50);
-            int numberOfBaseRooms = InputLogic.readInt("Enter how many BASE rooms this hotel will have: ", 0, numberOfRooms);
-            int numberOfDeluxeRooms = InputLogic.readInt("Enter how many DELUXE rooms this hotel will have: ", 0, (numberOfRooms - numberOfBaseRooms));
-            int numberOfExecutiveRooms = InputLogic.readInt("Enter how many EXECUTIVE rooms this hotel will have: ", 0, (numberOfRooms - numberOfBaseRooms - numberOfDeluxeRooms));
-
-            hotel = new Hotel(hotelName);     // instantiate new hotel
-            addRooms(numberOfBaseRooms, numberOfDeluxeRooms, numberOfExecutiveRooms, hotel);   // add rooms to hotel
-
-            confirmHotel = InputLogic.readInt("Confirm Hotel Creation? (1 - Yes, 0 - No)? ", 0, 1);
-            
-            if (confirmHotel == 1){     // confirmed creation of hotel
-                TextDisplay.design();
-                System.out.println("Hotel successfully created!");
-                InputLogic.readString("Press enter to exit...");
-                hotelCreationConfirm = true;
-                hotels.add(hotel);   // return hotel to be added to arraylist of hotels
-                break;
-            }
-        }
+        Hotel hotel = new Hotel(hotelName);     // instantiate new hotel   
+        addRooms(numberOfBaseRooms, numberOfDeluxeRooms, numberOfExecutiveRooms, hotel);   // add rooms to hotel
+        addHotel(hotel); // add hotel to list of hotels
     }
 }
