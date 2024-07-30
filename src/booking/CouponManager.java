@@ -21,7 +21,7 @@ public class CouponManager{
     public CouponManager() {
         Coupon iworkhere = new Coupon("I_WORK_HERE", "10% off for employees", 0.1);
         Coupon stay4get1 = new Coupon("STAY4_GET1", "Stay for 5 days or more, 1st night will be free", 1.0);
-        Coupon payday = new Coupon("PAYDAY", "7% off for payday", 0.07);
+        Coupon payday = new Coupon("PAYDAY", "7% off total price", 0.07);
         this.couponList = new HashMap<>();
         this.reservationDates = new HashSet<>();
         addCoupon(iworkhere);

@@ -48,6 +48,9 @@ public class CreateBookingWindow extends JFrame {
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (bookingController.validateCouponCode(couponField.getText(), checkInField.getText(), checkOutField.getText())) {
+                    JOptionPane.showMessageDialog(CreateBookingWindow.this, bookingController.getCouponMessage(), "Success", JOptionPane.INFORMATION_MESSAGE);
+                }
                 if (!bookingController.validateBookingDates(checkInField.getText(), checkOutField.getText())) {
                     JOptionPane.showMessageDialog(CreateBookingWindow.this, bookingController.getErrorMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -56,7 +59,7 @@ public class CreateBookingWindow extends JFrame {
                     JOptionPane.showMessageDialog(CreateBookingWindow.this, bookingController.getErrorMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
-                else if (!bookingController.validateCouponCode(couponField.getText())) {
+                else if (!bookingController.validateCouponCode(couponField.getText(), checkInField.getText(), checkOutField.getText())) {
                     JOptionPane.showMessageDialog(CreateBookingWindow.this, bookingController.getErrorMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 

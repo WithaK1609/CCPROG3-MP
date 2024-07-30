@@ -1,20 +1,37 @@
+/**
+ *
+ * Represents a the controller class for managing the creation of hotel and the GUI.
+ * <p> This class provides methods to check if the booking details are valid, calculate the total price
+ * <p> and create a booking objects if all conditions were met
+ *
+ * @author Jakob Hernandez && Kian Daylag
+ * @version 1.0
+ */
 package Controller;
 import hotel.Hotel;
 import rooms.*;
 import main.InputLogic;
+import java.util.Set;
 import booking.BookingManager;
 import booking.CouponManager;
 import booking.DatePriceModifier;
+import java.util.HashSet;
 
 
 public class BookingController {
     private String errorMessage;
+    private String couponMessage;
     private CouponManager couponManager = new CouponManager();
     private BookingManager bookingManager = new BookingManager();
 
     public String getErrorMessage() {
         return errorMessage;
     }
+
+    public String getCouponMessage() {
+        return couponMessage;
+    }
+
 
     public boolean validateGuestName(String guestName) {
         if (guestName == null || guestName.trim().isEmpty()) {
@@ -44,8 +61,12 @@ public class BookingController {
         return true;
     }
     
-    public boolean validateCouponCode(String couponCode) {
+    public boolean validateCouponCode(String couponCode, String checkIn, String checkOut) {
+        int checkInDate = Integer.parseInt(checkIn);
+        int checkOutDate = Integer.parseInt(checkOut);
+
         if (couponCode == null || couponCode.isBlank()) {
+            couponMessage = "No coupon applied.";
             return true;
         }
 
@@ -53,7 +74,42 @@ public class BookingController {
             errorMessage = "Invalid coupon code.";
             return false;
         }
-        return true;
+
+        Set<Integer> reservationDates = new HashSet<>();
+        reservationDates.clear(); // clears the reservation dates to ensure no duplication
+        for (int i = checkInDate; i <= checkOutDate; i++) {
+            reservationDates.add(i);
+            reservationDates.remove(checkOutDate); // removes the check-out date
+        }
+
+        // Checks which coupon code was entered
+        switch (couponCode) {
+            case "I_WORK_HERE":
+                couponMessage = "Coupon Applied: " + couponManager.getCouponList().get(couponCode).getDescription();
+                return true;
+            case "STAY4_GET1":
+                if (checkOutDate - checkInDate >= 5) {
+                    couponMessage = "Coupon Applied: " + couponManager.getCouponList().get(couponCode).getDescription();
+                    return true;
+                } else {
+                    errorMessage = "You must STAY for 5 days or more to avail this coupon.";
+                    break;
+                }
+            case "PAYDAY":
+                // ensures that the reservation dates cover the 15th or 30th of the month
+                if (reservationDates.contains(15) || reservationDates.contains(30)) {
+                    couponMessage = "Coupon Applied: " + couponManager.getCouponList().get(couponCode).getDescription();
+                    return true;
+                } else {
+                    errorMessage = "You MUST HAVE reservations days that cover the 15th or 30th of the month to avail this coupon BUT NOT AS CHECKOUT.";
+                    break;
+                }
+            default:
+                errorMessage = "Invalid coupon code.";
+                return false;
+        }
+
+        return false;
 
     }
 

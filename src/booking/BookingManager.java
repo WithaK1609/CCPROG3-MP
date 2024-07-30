@@ -25,7 +25,7 @@ public class BookingManager {
     public void createBooking(Hotel hotel, String guestName, Room selectedRoom, int checkIn, int checkOut, double totalPrice){
         // declare necessary variables
         Booking booking = new Booking(guestName, selectedRoom, checkIn, checkOut, totalPrice);      // create new booking object
-        hotel.confirmBooking(booking);    // confirm booking 
+        hotel.confirmBooking(booking);    // confirm booking in the hotel object
              
     }
 }
