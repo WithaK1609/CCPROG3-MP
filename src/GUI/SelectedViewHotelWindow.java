@@ -10,12 +10,9 @@ package GUI;
 
 import hotel.Hotel;
 import Controller.ViewHotelController;
-import rooms.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.List;
-
 public class SelectedViewHotelWindow extends JFrame{
     private ViewHotelController viewHotelController = new ViewHotelController();
     private JButton viewRoomAvailButton;
@@ -78,7 +75,14 @@ public class SelectedViewHotelWindow extends JFrame{
 
         viewSpecificBookingButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new ViewSpecificBookingWindow(selectedHotel).setVisible(true);
+                if (selectedHotel.getReservationDetails().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "There are no reservations for this hotel.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                else {
+                    new ViewSpecificBookingWindow(selectedHotel).setVisible(true);
+                }
+                
             }
         });
         
