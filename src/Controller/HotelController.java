@@ -35,6 +35,23 @@ public class HotelController {
         return true;
     }
 
+    public boolean isValidPrice(String price) {
+        boolean isPriceValid = InputLogic.validateDouble(price, 100, 10000);
+        if (!isPriceValid) {
+            errorMessage = "Please enter a valid price between 100 and 10000.";
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isBookingsNotEmpty(Hotel hotel) {
+        if (!hotel.getReservationDetails().isEmpty()) {
+            errorMessage = "Can't change the price of rooms, there are bookings in the hotel.";
+            return false;
+        }
+        return true;
+    }
+
     /**
      * Validates the number of rooms to be added.
      * @param numberofBaseRooms 

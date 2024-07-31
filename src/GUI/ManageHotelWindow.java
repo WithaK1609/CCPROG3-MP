@@ -62,7 +62,7 @@ public class ManageHotelWindow extends JFrame{
 
         updateRoomsPrice.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // new UpdateRoomsPriceWindow().setVisible(true);
+                new UpdateRoomPriceWindow(selectedHotel).setVisible(true);
             }
         });
 
