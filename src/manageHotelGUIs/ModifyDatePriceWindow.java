@@ -1,7 +1,6 @@
 package manageHotelGUIs;
 
 import hotel.Hotel;
-import hotel.HotelManager;
 import rooms.Room;
 import Controller.HotelController;
 
@@ -11,7 +10,6 @@ import java.awt.event.*;
 
 public class ModifyDatePriceWindow extends JDialog{
     private HotelController hotelController = new HotelController();
-    private HotelManager hotelManager = HotelManager.getInstance();
     private JComboBox<Room> roomComboBox;
     private JTextField pricePercentagTextField;
     private JTextField startDateTextField;
