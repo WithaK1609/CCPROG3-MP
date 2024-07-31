@@ -34,6 +34,55 @@ public class HotelController {
         }
         return true;
     }
+    /**
+     * Validates the number of rooms to be removed.
+     * @param numberOfBase
+     * @param numberOfDeluxe
+     * @param numberOfExecutive
+     * @param hotel
+     * @return
+     */
+    public boolean validateRemovedNumberOfRooms(String numberOfBase, String numberOfDeluxe, String numberOfExecutive, hotel.Hotel hotel) {
+        boolean isNumberofBaseRoomsValid = InputLogic.validateInt(numberOfBase, 0, 50);
+        boolean isNumberOfDeluxeRoomsValid = InputLogic.validateInt(numberOfDeluxe, 0, 50);
+        boolean isNumberOfExecutiveRoomsValid = InputLogic.validateInt(numberOfExecutive, 0, 50);
+    
+        // Check if all inputs are valid
+        if (!isNumberofBaseRoomsValid || !isNumberOfDeluxeRoomsValid || !isNumberOfExecutiveRoomsValid) {
+            errorMessage = "Please enter a number between 0 and 50 for each room type. The total number of rooms should not exceed 50.";
+            return false;
+        }
+    
+        int toRemoveBase = Integer.parseInt(numberOfBase);
+        int toRemoveDeluxe = Integer.parseInt(numberOfDeluxe);
+        int toRemoveExecutive = Integer.parseInt(numberOfExecutive);
+    
+        int currentBaseCount = hotel.countBaseRooms();
+        int currentDeluxeCount = hotel.countDeluxeRooms();
+        int currentExecutiveCount = hotel.countExecutiveRooms();
+    
+        // Check that we leave at least one room of each type
+        if (currentBaseCount - toRemoveBase < 1) {
+            errorMessage = "There must be at least one base room remaining.";
+            return false;
+        }
+        if (currentDeluxeCount - toRemoveDeluxe < 1) {
+            errorMessage = "There must be at least one deluxe room remaining.";
+            return false;
+        }
+        if (currentExecutiveCount - toRemoveExecutive < 1) {
+            errorMessage = "There must be at least one executive room remaining.";
+            return false;
+        }
+    
+        // Ensure we do not remove more rooms than available
+        if (toRemoveBase > currentBaseCount || toRemoveDeluxe > currentDeluxeCount || toRemoveExecutive > currentExecutiveCount) {
+            errorMessage = "Cannot remove more rooms than currently available of that type.";
+            return false;
+        }
+    
+        return true;
+    }
 
     /**
      * Validates the date and price modifier.
