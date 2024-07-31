@@ -35,6 +35,14 @@ public class HotelController {
         return true;
     }
 
+    /**
+     * Validates the date and price.
+     * @param startDate
+     * @param endDate
+     * @param price
+     * @return
+     */
+
     public boolean validateDatePrice(String startDate, String endDate, String price) {
         boolean isStartDateValid = InputLogic.validateInt(startDate, 1, 30);
         boolean isEndDateValid = InputLogic.validateInt(endDate, 1, 30);
@@ -70,7 +78,13 @@ public class HotelController {
 
         return true;
     }
-    
+
+    /**
+     * Validates the price.
+     * @param price
+     * @return
+     */
+
     public boolean isValidPrice(String price) {
         boolean isPriceValid = InputLogic.validateDouble(price, 100, 10000);
         if (!isPriceValid) {
@@ -79,6 +93,14 @@ public class HotelController {
         }
         return true;
     }
+    
+    /**
+     * Validates the number of rooms.
+     * @param numberofBaseRooms
+     * @param numberOfDeluxeRooms
+     * @param numberOfExecutiveRooms
+     * @return boolean
+     */
 
     public boolean isBookingsNotEmpty(Hotel hotel) {
         if (!hotel.getReservationDetails().isEmpty()) {
@@ -87,7 +109,14 @@ public class HotelController {
         }
         return true;
     }
-
+    /**
+     * Validates the number of rooms to be removed.
+     * @param numberOfBase
+     * @param numberOfDeluxe
+     * @param numberOfExecutive
+     * @param hotel
+     * @return
+     */
     public boolean validateRemovedNumberOfRooms(String numberOfBase, String numberOfDeluxe, String numberOfExecutive, hotel.Hotel hotel) {
         boolean isNumberofBaseRoomsValid = InputLogic.validateInt(numberOfBase, 0, 50);
         boolean isNumberOfDeluxeRoomsValid = InputLogic.validateInt(numberOfDeluxe, 0, 50);
@@ -169,7 +198,7 @@ public class HotelController {
 
 
     /**
-     * Validates the number of rooms.
+     * Validates the number of rooms (this function is for creation of hotel validation).
      * @param numberofBaseRooms 
      * @param numberOfDeluxeRooms
      * @param numberOfExecutiveRooms
