@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class RemoveBookingWindow extends JDialog {
+public class RemoveBookingWindow extends JFrame {
     private JComboBox<Booking> bookingList;
     private JButton removeButton;
 

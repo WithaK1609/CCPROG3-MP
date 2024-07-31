@@ -27,9 +27,7 @@ public class UpdateRoomPriceWindow extends JFrame {
         setTitle("Update Room Prices");
         setSize(300, 150);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setLayout(new GridLayout(5, 1));
-
-        add(new JLabel());
+        setLayout(new GridLayout(4, 1));
 
         add(new JLabel("Enter new room price:"));
         priceField = new JTextField();
@@ -71,6 +69,7 @@ public class UpdateRoomPriceWindow extends JFrame {
             }
         });
 
-        setVisible(true);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
     }
 }

@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class ModifyDatePriceWindow extends JDialog{
+public class ModifyDatePriceWindow extends JFrame{
     private HotelController hotelController = new HotelController();
     private JComboBox<Room> roomComboBox;
     private JTextField pricePercentagTextField;

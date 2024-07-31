@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class RemoveHotelWindow extends JDialog {
+public class RemoveHotelWindow extends JFrame {
 
     private HotelManager hotelManager = HotelManager.getInstance();
     private JButton removeButton;
@@ -20,7 +20,9 @@ public class RemoveHotelWindow extends JDialog {
         setLayout(new GridLayout(1, 1));
 
         removeButton = new JButton("Remove");
+        add(removeButton);
         cancelButton = new JButton("Cancel");
+        add(cancelButton);
 
 
         removeButton.addActionListener(new ActionListener() {
@@ -41,9 +43,6 @@ public class RemoveHotelWindow extends JDialog {
         });
 
         cancelButton.addActionListener(e -> dispose()); 
-
-        add(removeButton);
-        add(cancelButton);
 
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 

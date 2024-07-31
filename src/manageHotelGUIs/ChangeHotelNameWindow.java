@@ -10,7 +10,7 @@ import java.awt.event.*;
 
 
 
-public class ChangeHotelNameWindow extends JDialog {
+public class ChangeHotelNameWindow extends JFrame {
     private HotelController hotelController = new HotelController();
     private HotelManager hotelManager = HotelManager.getInstance();
     private JTextField nameField;
@@ -19,12 +19,17 @@ public class ChangeHotelNameWindow extends JDialog {
 
     public ChangeHotelNameWindow(Hotel hotel) {
         setTitle("Change Hotel Name");
-        setSize(300, 100);
-        setLayout(new GridLayout(2, 1)); // Adjust grid layout to fit all components
+        setSize(300, 130);
+        setLayout(new GridLayout(4, 1)); // Adjust grid layout to fit all components
 
+        add(new JLabel("New Hotel Name:"));
         nameField = new JTextField(hotel.getName(), 20);
+        add(nameField);
         saveButton = new JButton("Save");
-        backButton = new JButton("Back");
+        
+        add(new JLabel());
+        add(saveButton);
+        
 
 
         saveButton.addActionListener(new ActionListener() {
@@ -46,13 +51,6 @@ public class ChangeHotelNameWindow extends JDialog {
                 }
             }
         });
-
-        backButton.addActionListener(e -> dispose()); // Close the window without making changes
-
-        add(new JLabel("New Hotel Name:"));
-        add(nameField);
-        add(saveButton);
-        add(backButton);
 
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null); // makes it appear in the center of the screen

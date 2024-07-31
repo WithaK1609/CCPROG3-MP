@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class AddRoomsWindow extends JDialog {
+public class AddRoomsWindow extends JFrame {
     private HotelController hotelController = new HotelController();
     private HotelManager hotelManager = HotelManager.getInstance();
     private JTextField baseRoomsField;
