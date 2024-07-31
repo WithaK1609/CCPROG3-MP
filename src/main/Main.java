@@ -1,4 +1,6 @@
+
 package main;
+/**
 import GUI.TextDisplay;
 import GUI.ViewHotel;
 import booking.BookingManager;
@@ -15,12 +17,14 @@ import hotel.ManageHotel;
  * @author Jakob Hernandez && Kian Daylag
  * @version 1.0
  */
+@Deprecated
 public class Main{
+
     /**
      * The main method of the program.
      *
      * @param args the command line arguments
-     */
+     
     public static void main(String[] args){
         //new GUI();
         HotelManager hotelManager = new HotelManager();
@@ -36,7 +40,7 @@ public class Main{
             TextDisplay.displayMainChoices();
             choice = InputLogic.readInt("Choose: ", 0, 5);  // gets user input. Refer to the InputLogic for more details
             if (choice == 1){
-                hotelManager.createHotel();
+                //hotelManager.createHotel();
             }
 
             else if(choice == 2){
@@ -48,7 +52,7 @@ public class Main{
             }
 
             else if(choice == 4){
-                bookingManager.createBooking(hotelManager.getHotels());
+                //bookingManager.createBooking(hotelManager.getHotels());
             }
             
             else if(choice == 5){
@@ -60,7 +64,7 @@ public class Main{
         }while(choice != 0);
 
         InputLogic.closeScanner();
-    }    
+    } */  
 }
 
     
