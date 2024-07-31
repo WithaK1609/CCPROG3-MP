@@ -1,10 +1,3 @@
-package GUI;
-import java.util.*;
-
-import booking.Booking;
-import hotel.Hotel;
-import main.InputLogic;
-import rooms.Room;
 /**
  * Represents a utility class for viewing hotel information.
  *
@@ -13,6 +6,14 @@ import rooms.Room;
  * @author Jakob Hernandez && Kian Daylag
  * @version 1.0
  */
+package GUI;
+import java.util.*;
+
+import booking.Booking;
+import hotel.Hotel;
+import main.InputLogic;
+import rooms.Room;
+
 public class ViewHotel{
 
     /**
