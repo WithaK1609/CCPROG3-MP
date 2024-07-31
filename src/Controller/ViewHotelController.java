@@ -1,7 +1,7 @@
 package Controller;
 import java.util.ArrayList;
-import hotel.Hotel;
 import main.InputLogic;
+import hotel.Hotel;
 import rooms.Room;
 public class ViewHotelController {
     private String errorMessage;
