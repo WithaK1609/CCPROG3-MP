@@ -32,7 +32,11 @@ public class BookingController {
         return couponMessage;
     }
 
-
+    /**
+     * Validates the guest name.
+     * @param guestName
+     * @return true if the guest name is valid, false otherwise
+     */
     public boolean validateGuestName(String guestName) {
         if (guestName == null || guestName.trim().isEmpty()) {
             errorMessage = "Please enter a valid guest name.";
@@ -42,6 +46,12 @@ public class BookingController {
         return true;
     }
     
+    /**
+     * Validates the booking dates.
+     * @param checkin
+     * @param checkout
+     * @return true if the booking dates are valid, false otherwise
+     */
     public boolean validateBookingDates(String checkin, String checkout) {
         boolean isCheckInValid = InputLogic.validateInt(checkin, 1, 30);
 
@@ -61,6 +71,13 @@ public class BookingController {
         return true;
     }
     
+    /**
+     * Validates the coupon code.
+     * @param couponCode
+     * @param checkIn
+     * @param checkOut
+     * @return true if the coupon code is valid, false otherwise
+     */
     public boolean validateCouponCode(String couponCode, String checkIn, String checkOut) {
         int checkInDate = Integer.parseInt(checkIn);
         int checkOutDate = Integer.parseInt(checkOut);
@@ -113,6 +130,14 @@ public class BookingController {
 
     }
 
+    /**
+     * Calculates the total price of the booking.
+     * @param couponCode
+     * @param selectedRoom
+     * @param checkIn
+     * @param checkOut
+     * @return the total price of the booking
+     */
     public double calculateTotalPrice(String couponCode, Room selectedRoom, int checkIn, int checkOut) {
         double totalPrice = 0.0;
         DatePriceModifier modifier = selectedRoom.getDatePriceModifier();
@@ -124,6 +149,16 @@ public class BookingController {
         return totalPrice;
     }
     
+    /**
+     * Creates a booking object.
+     * @param hotel
+     * @param guestName
+     * @param selectedRoom
+     * @param checkIn
+     * @param checkOut
+     * @param totalPrice
+     * @return true if the booking was created, false otherwise
+     */
     public boolean isBookingCreated (Hotel hotel, String guestName, Room selectedRoom, int checkIn, int checkOut, double totalPrice) {
         bookingManager.createBooking(hotel, guestName, selectedRoom, checkIn, checkOut, totalPrice);
         return true;
