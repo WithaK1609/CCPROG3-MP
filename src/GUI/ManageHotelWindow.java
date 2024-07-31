@@ -80,7 +80,7 @@ public class ManageHotelWindow extends JFrame{
 
         modifyDatePrice.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // new ModifyDatePriceWindow().setVisible(true);
+                new ModifyDatePriceWindow(selectedHotel).setVisible(true);
             }
         });
 

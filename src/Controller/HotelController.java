@@ -35,6 +35,42 @@ public class HotelController {
         return true;
     }
 
+    public boolean validateDatePrice(String startDate, String endDate, String price) {
+        boolean isStartDateValid = InputLogic.validateInt(startDate, 1, 30);
+        boolean isEndDateValid = InputLogic.validateInt(endDate, 1, 30);
+        
+        if(!isStartDateValid && !isEndDateValid) {
+            errorMessage = "Please enter a valid start and end date.";
+            return false;
+        }
+
+        if (!isStartDateValid) {
+            errorMessage = "Please enter a valid start date.";
+            return false;
+        }
+
+        if (!isEndDateValid) {
+            errorMessage = "Please enter a valid end date.";
+            return false;
+        }
+
+        int start = Integer.parseInt(startDate);
+        int end = Integer.parseInt(endDate);
+
+        if (start > end) {
+            errorMessage = "End date should be less than start date.";
+            return false;
+        }
+
+        boolean isPriceValid = InputLogic.validateDouble(price, 0.5, 1.5);
+        if (!isPriceValid) {
+            errorMessage = "Please enter a valid modifier between 0.5 and 1.5.";
+            return false;
+        }
+
+        return true;
+    }
+    
     public boolean isValidPrice(String price) {
         boolean isPriceValid = InputLogic.validateDouble(price, 100, 10000);
         if (!isPriceValid) {
