@@ -14,12 +14,27 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.Collections;
 
+/**
+ * Represents a window for removing rooms from a hotel.
+ *
+ * <p>This class handles the GUI and functionality for removing rooms from a hotel.
+ *
+ * @author Kian Daylag
+ * @version 1.0
+ */
+
 public class RemoveRoomsWindow extends JFrame {
     private HotelController hotelController = new HotelController();
     private JTextField baseTextField;
     private JTextField deluxeTextField;
     private JTextField executiveTextField;
     private JButton saveButton;
+
+    /**
+     * Creates a window for removing rooms from a hotel.
+     *
+     * @param hotel the hotel to remove rooms from
+     */
 
     public RemoveRoomsWindow(Hotel hotel) {
         setTitle("Remove Rooms");

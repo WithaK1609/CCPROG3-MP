@@ -8,6 +8,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * Represents a window for modifying the price of a room for a specific date range.
+ * 
+ * <p>This class handles the GUI and functionality for modifying the price of a room for a specific date range.
+ * 
+ * @author Kian Daylag
+ * @version 1.0
+ * 
+ */
+
 public class ModifyDatePriceWindow extends JFrame{
     private HotelController hotelController = new HotelController();
     private JComboBox<Room> roomComboBox;
@@ -16,10 +26,22 @@ public class ModifyDatePriceWindow extends JFrame{
     private JTextField endDateTextField;
     private JButton saveButton;
 
+    /**
+     * returns the selected room
+     * 
+     * @return the selected room
+     */
 
     private Room getSelectedRoom(){
         return (Room) roomComboBox.getSelectedItem();
     }
+
+    /**
+     * Creates a window for modifying the price of a room for a specific date range.
+     * 
+     * @param hotel the hotel to modify the price of
+     */
+
     public ModifyDatePriceWindow(Hotel hotel){
         setTitle("Modify Date Price");
         setSize(400, 250);

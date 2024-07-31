@@ -12,24 +12,34 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Represents a window for updating the price of rooms in a hotel.
+ * 
+ * <p>This class handles the GUI and functionality for updating the price of rooms in a hotel.
+ * 
+ * @author Kian Daylag
+ * @version 1.0
+ * 
+ */
+
 public class UpdateRoomPriceWindow extends JFrame {
     private HotelController hotelController = new HotelController();
-    private Hotel hotel;
     private JTextField priceField;
     private JButton updateButton;
 
-    public UpdateRoomPriceWindow(Hotel hotel) {
-        this.hotel = hotel;
-        initializeGUI();
-    }
+    /**
+     * Creates a window for updating the base price of rooms in a hotel.
+     * 
+     * @param hotel the hotel to update the price of
+     */
 
-    private void initializeGUI() {
+    public UpdateRoomPriceWindow(Hotel hotel) {
         setTitle("Update Room Prices");
         setSize(300, 150);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new GridLayout(4, 1));
 
-        add(new JLabel("Enter new room price:"));
+        add(new JLabel("Enter new base room price:"));
         priceField = new JTextField();
         add(priceField);
 
@@ -72,4 +82,5 @@ public class UpdateRoomPriceWindow extends JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
     }
+
 }

@@ -8,6 +8,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * Represents a window for adding rooms to a hotel.
+ * 
+ * <p>This class handles the GUI and functionality for adding rooms to a hotel.
+ * 
+ * @author Kian Daylag
+ * @version 1.0
+ */
+
 public class AddRoomsWindow extends JFrame {
     private HotelController hotelController = new HotelController();
     private HotelManager hotelManager = HotelManager.getInstance();
@@ -16,6 +25,13 @@ public class AddRoomsWindow extends JFrame {
     private JTextField executiveRoomsField;
     private JButton saveButton;
 
+
+    /**
+     * Creates a window for adding rooms to a hotel.
+     * 
+     * @param hotel the hotel to add rooms to
+     */
+    
     public AddRoomsWindow(Hotel hotel) {
         setTitle("Add Rooms");
         setSize(400, 250);

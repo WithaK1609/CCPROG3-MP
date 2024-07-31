@@ -8,6 +8,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * Represents a window for changing the name of a hotel.
+ * 
+ * <p>This class handles the GUI and functionality for changing the name of a hotel.
+ * 
+ * @author Kian Daylag
+ * @version 1.0
+ */
 
 
 public class ChangeHotelNameWindow extends JFrame {
@@ -15,7 +23,12 @@ public class ChangeHotelNameWindow extends JFrame {
     private HotelManager hotelManager = HotelManager.getInstance();
     private JTextField nameField;
     private JButton saveButton;
-    private JButton backButton;
+
+    /**
+     * Creates a window for changing the name of a hotel.
+     * 
+     * @param hotel the hotel to change the name of
+     */
 
     public ChangeHotelNameWindow(Hotel hotel) {
         setTitle("Change Hotel Name");

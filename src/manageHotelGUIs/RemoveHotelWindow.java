@@ -8,12 +8,28 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+    /**
+     * Represents a window for removing a hotel.
+     * 
+     * <p>This class handles the GUI and functionality for removing a hotel.
+     * 
+     * @author Kian Daylag
+     * @version 1.0
+     */
+
 public class RemoveHotelWindow extends JFrame {
 
     private HotelManager hotelManager = HotelManager.getInstance();
     private JButton removeButton;
     private JButton cancelButton;
 
+    /**
+     * Creates a window for removing a hotel.
+     * 
+     * @param hotel the hotel to remove
+     * @param parentWindow the parent window
+     */
+    
     public RemoveHotelWindow(Hotel hotel, ManageHotelWindow parentWindow) {
         setTitle("Remove Hotel");
         setSize(300, 80);

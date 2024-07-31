@@ -10,13 +10,34 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+    /**
+     * Represents a window for removing a booking from a hotel.
+     * 
+     * <p>This class handles the GUI and functionality for removing a booking from a hotel.
+     * 
+     * @author Kian Daylag
+     * @version 1.0
+     */
+
 public class RemoveBookingWindow extends JFrame {
     private JComboBox<Booking> bookingList;
     private JButton removeButton;
 
+    /**
+     * returns the selected booking 
+     * 
+     * @return the selected booking
+     */
+
     private Booking getSelectedBooking() {
         return (Booking) bookingList.getSelectedItem();
     }
+
+    /**
+     * Creates a window for removing a booking from a hotel.
+     * 
+     * @param hotel the hotel to remove the booking from
+     */
 
     public RemoveBookingWindow(Hotel hotel) {
         setTitle("Remove Booking");
