@@ -7,8 +7,6 @@
 package GUI;
 
 import hotel.Hotel;
-import rooms.*;
-import Controller.ViewHotelController;
 import booking.Booking;
 
 import javax.swing.*;
@@ -65,7 +63,7 @@ public class ViewSpecificBookingWindow extends JFrame{
     }
 
     private class SelectedBookingView extends JFrame {
-        JLabel selectedRoomLabel, guestNameLabel, checkInLabel, checkOutLabel, baseRoomPriceLabel, totalPriceLabel;
+        JLabel selectedRoomLabel, guestNameLabel, checkInLabel, checkOutLabel, baseRoomPriceLabel;
         // Constructor
         public SelectedBookingView(Hotel selectedHotel, Booking selectedBooking) {
             initializeGUI(selectedHotel, selectedBooking);
