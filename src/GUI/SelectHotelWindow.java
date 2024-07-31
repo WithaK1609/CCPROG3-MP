@@ -1,3 +1,11 @@
+/**
+ * This class is responsible for creating the GUI for the Select Hotel Window.
+ *
+ * <p>This class provides methods to select a hotel and room for a booking.
+ *
+ * @author Jakob Hernandez && Kian Daylag
+ * @version 1.0
+ */
 package GUI;
 
 import hotel.HotelManager;
@@ -17,11 +25,18 @@ public class SelectHotelWindow extends JFrame {
     private HotelManager hotelManager = HotelManager.getInstance();
     private List<Hotel> hotels = hotelManager.getHotels();
 
+    // Constructor
     public SelectHotelWindow(CreateBookingWindow createBookingWindow, String guestName, String checkIn, String checkOut) {
         this.createBookingWindow = createBookingWindow;
         initializeGUI(guestName, checkIn, checkOut);
     }
 
+    /**
+     * Initializes the GUI for the Select Hotel Window.
+     * @param guestName 
+     * @param checkIn
+     * @param checkOut
+     */
     private void initializeGUI(String guestName, String checkIn, String checkOut) {
         setTitle("Select Hotel");
         setSize(600, 500);
@@ -118,10 +133,12 @@ public class SelectHotelWindow extends JFrame {
 
                 if (roomComboBox.getSelectedItem() == null) {
                     JOptionPane.showMessageDialog(SelectHotelWindow.this, "Please select a room", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
                 }
 
                 else if (hotelComboBox.getSelectedItem() == null) {
                     JOptionPane.showMessageDialog(SelectHotelWindow.this, "Please select a hotel", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
                 }
 
                 else {

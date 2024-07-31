@@ -71,7 +71,7 @@ public class SelectedViewHotelWindow extends JFrame{
 
         viewSpecificRoomButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //new ViewSpecificRoomWindow(selectedHotel).setVisible(true);
+                new ViewSpecificRoomWindow(selectedHotel).setVisible(true);
 
             }
         });
