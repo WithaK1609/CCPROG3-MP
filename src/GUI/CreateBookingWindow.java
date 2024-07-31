@@ -1,3 +1,12 @@
+/**
+ * This class is responsible for creating the GUI for the Create Booking Window.
+ *
+ * <p>This class has the GUI for inputting the guest name, check-in date, check-out date, and coupon code.
+ *
+ * @author Jakob Hernandez && Kian Daylag
+ * @version 1.0
+ */
+
 package GUI;
 import javax.swing.*;
 import Controller.BookingController;
@@ -13,10 +22,14 @@ public class CreateBookingWindow extends JFrame {
     private JButton nextButton;
     JLabel selectedRoomLabel;
     
+    // Constructor
     public CreateBookingWindow() {
         initializeGUI();
     }
     
+    /**
+     * Initializes the GUI for the Create Booking Window.
+     */
     public void initializeGUI() {
         setTitle("Booking");
         setSize(400, 300);
@@ -53,14 +66,17 @@ public class CreateBookingWindow extends JFrame {
                 }
                 if (!bookingController.validateBookingDates(checkInField.getText(), checkOutField.getText())) {
                     JOptionPane.showMessageDialog(CreateBookingWindow.this, bookingController.getErrorMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
                 }
 
                 else if (!bookingController.validateGuestName(guestNameField.getText())) {
                     JOptionPane.showMessageDialog(CreateBookingWindow.this, bookingController.getErrorMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
                 }
 
                 else if (!bookingController.validateCouponCode(couponField.getText(), checkInField.getText(), checkOutField.getText())) {
                     JOptionPane.showMessageDialog(CreateBookingWindow.this, bookingController.getErrorMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
                 }
                 
                 else {

@@ -1,3 +1,12 @@
+/**
+ * This class is responsible for confirming the boooking
+ *
+ * <p>This class provides the GUI for confirming the booking.
+ *
+ * @author Jakob Hernandez && Kian Daylag
+ * @version 1.0
+ */
+
 package GUI;
 
 import hotel.Hotel;
@@ -14,11 +23,21 @@ public class ConfirmBookingWindow extends JFrame {
     private JLabel selectedRoomLabel, guestNameLabel, checkInLabel, checkOutLabel, baseRoomPriceLabel, totalPriceLabel;
     private JButton confirmButton, backButton;
 
+    // Constructor
     public ConfirmBookingWindow(CreateBookingWindow createBookingWindow, Hotel selectedHotel, Room selectedRoom, String guestName, int checkIn, int checkOut) {
         this.createBookingWindow = createBookingWindow;
         initializeGUI(createBookingWindow, selectedHotel, selectedRoom, guestName, checkIn, checkOut);
     }
-
+    
+    /**
+     * Initializes the GUI for the Confirm Booking Window.
+     * @param createBookingWindow
+     * @param selectedHotel
+     * @param selectedRoom
+     * @param guestName
+     * @param checkIn
+     * @param checkOut
+     */
     public void initializeGUI(CreateBookingWindow createBookingWindow, Hotel selectedHotel, Room selectedRoom, String guestName, int checkIn, int checkOut) {
         // Set up the frame
         setTitle("Confirm Booking");
@@ -127,6 +146,7 @@ public class ConfirmBookingWindow extends JFrame {
                 }
                 else {
                     JOptionPane.showMessageDialog(ConfirmBookingWindow.this, "Booking failed. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
                 }
             }
                 

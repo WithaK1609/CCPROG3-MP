@@ -1,3 +1,11 @@
+/**
+ *  This class is responsible for creating the GUI for the Create Hotel Window.
+ *
+ * <p>This class provides the GUI for creating a hotel.
+ *
+ * @author Jakob Hernandez && Kian Daylag
+ * @version 1.0
+ */
 package GUI;
 import javax.swing.*;
 import Controller.HotelController;
@@ -14,10 +22,14 @@ public class CreateHotelWindow extends JFrame {
     private HotelController hotelController = new HotelController();
     private HotelManager hotelManager = HotelManager.getInstance();
     
+    // Constructor
     public CreateHotelWindow() {
         initializeGUI();
     }
     
+    /**
+     * Initializes the GUI for the Create Hotel Window.
+     */
     public void initializeGUI() {
         setTitle("Hotel Manager");
         setSize(400, 300);
@@ -59,10 +71,12 @@ public class CreateHotelWindow extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (hotelNameField.getText().length() > 20){
                     JOptionPane.showMessageDialog(CreateHotelWindow.this, "Hotel name is too long! Please enter a name with less than 20 characters."); 
+                    return;
                 }
 
                 else if (!hotelController.isHotelNameUnique(hotelNameField.getText(), hotelManager.getHotels())) {
                     JOptionPane.showMessageDialog(CreateHotelWindow.this, "Hotel name already exists! Please choose a different name.");
+                    return;
                 }
 
                 else if (!hotelController.validateNumberofRooms(baseRoomsField.getText(), deluxeRoomsField.getText(), executiveRoomsField.getText())) {
@@ -71,6 +85,7 @@ public class CreateHotelWindow extends JFrame {
 
                 else if (hotelNameField.getText().isBlank()) {
                     JOptionPane.showMessageDialog(CreateHotelWindow.this, "Please enter a valid hotel name!");
+                    return;
                 }
 
                 else {

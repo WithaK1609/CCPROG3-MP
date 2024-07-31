@@ -1,6 +1,13 @@
+/**
+ * This class is responsible for creating the GUI for the Main Menu.
+ *
+ * <p>This class has the GUI for the main menu.
+ *
+ * @author Jakob Hernandez && Kian Daylag
+ * @version 1.0
+ */
 package GUI;
 import javax.swing.*;
-
 import hotel.HotelManager;
 
 import java.awt.*;
@@ -11,11 +18,14 @@ public class MainMenu {
     private JFrame mainFrame;
     private JButton manageHotelButton, viewHotelButton, createHotelButton, createBookingButton; // buttons
 
+    // Constructor
     public MainMenu() {
         GUI();
     }
 
-
+    /**
+     * Initializes the GUI for the Main Menu.
+     */
     private void GUI() {
         mainFrame = new JFrame("Hotel Management System");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -39,7 +49,10 @@ public class MainMenu {
                     JOptionPane.showMessageDialog(mainFrame, "No hotels available. Please create a hotel first.");
                     return;
                 }
-                // new ViewHotelWindow(hotels).setVisible(true);
+
+                else {
+                    new ViewHotelWindow().setVisible(true);
+                }
             }
         });
 
