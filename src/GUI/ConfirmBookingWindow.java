@@ -94,7 +94,8 @@ public class ConfirmBookingWindow extends JFrame {
                             ));
         totalPricePanel.setBounds(40, 310, 300, 50);
         String couponText = createBookingWindow.couponField.getText();  // initialize couponText with the value from the couponField
-        totalPriceLabel = new JLabel("P" + String.format("%.2f", bookingController.calculateTotalPrice(couponText, selectedRoom, checkIn, checkOut)));
+        double totalPrice = bookingController.calculateTotalPrice(couponText, selectedRoom, checkIn, checkOut);  // calculate the total price
+        totalPriceLabel = new JLabel("P" + String.format("%.2f", totalPrice));
         totalPriceLabel.setBounds(40, 10, 200, 30);
         totalPricePanel.add(totalPriceLabel);
         add(totalPricePanel); 
@@ -119,7 +120,7 @@ public class ConfirmBookingWindow extends JFrame {
         confirmButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (bookingController.isBookingCreated(selectedHotel, guestName, selectedRoom, checkIn, checkOut, checkOut)) {
+                if (bookingController.isBookingCreated(selectedHotel, guestName, selectedRoom, checkIn, checkOut, totalPrice)) {
                     JOptionPane.showMessageDialog(ConfirmBookingWindow.this, "Booking confirmed!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     ConfirmBookingWindow.this.dispose();
                     createBookingWindow.dispose();
